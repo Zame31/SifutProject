@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Sifut - Sistem Informasi Futsal</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="assets/css/style_user.css" rel="stylesheet">
+    
+    <!-- Custom Fonts -->
+    <link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+
+</head>
+<body id="lapang" class="index">
+     <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="index.html">SIFUT  </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="index.html"></a>
+                    </li>
+
+                    <li>
+                        <a data-toggle="modal" href="#login">Login Member</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    
+    <section id="lapang">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Ketersediaan Lapang</h2>
+                    <h3 class="section-subheading text-muted">Lapang yang masih tersedia</h3>
+                </div>
+            </div>
+            <div class="tgl">
+                <h5>Pilih Tanggal :</h5>
+                <div class="input-group search">
+                    <input name="cari" type="date" class="form-control" placeholder="Pilih Tanggal">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+                    </span>
+                </div>
+            </div>
+
+
+            <table cellpadding="0" cellspacing="0" border="0" class="table table-hover tab-mar-top" id="example">
+              <thead>
+                  <tr>
+                    <th>Waktu</th>
+                    <th>Harga</th>
+                    <th>Tersedia</th>
+                    <th>Lapang 1</th>
+                    <th>Lapang 2</th>
+                  </tr>
+                </thead>
+              <tbody>
+                <tr>
+                  <td>00:00 - 01:00</td>
+                  <td>Rp.0</td>
+                  <td>0 Lapang</td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td>01:00 - 02:00</td>
+                  <td>Rp.0</td>
+                  <td>0 Lapang</td>
+                  <td>-</td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td>02:00 - 03:00</td>
+                  <td>Rp.150000</td>
+                  <td>2 Lapang</td>
+                  <td><a data-toggle="modal" href="#pesan" class="pesan">Pesan</a></td>
+                  <td><span class="sudah_pesan">Sudah Dipesan</span></td>
+                </tr>
+                 <tr>
+                  <td>03:00 - 04:00</td>
+                  <td>Rp.150000</td>
+                  <td>2 Lapang</td>
+                  <td><a href="#" class="pesan">Pesan</a></td>
+                  <td><a href="#" class="pesan">Pesan</a></td>
+                </tr>
+                <tr>
+                  <td>04:00 - 05:00</td>
+                  <td>Rp.150000</td>
+                  <td>2 Lapang</td>
+                  <td><span class="sudah_pesan">Sudah Dipesan</span></td></td>
+                  <td><span class="sudah_pesan">Sudah Dipesan</span></td></td>
+                </tr>
+             </tbody>
+            </table>
+
+
+
+        </div>
+    </section>
+    
+    <div class="sm-modal modal fade" id="pesan" role="dialog">
+      <div class="modal-dialog dialog-size">
+        <div class="modal-content content-size">
+        <form class="form-horizontal" method="POST" action="module_admin/action_admin.php">
+            <div class="modal-header color-head">
+              <i class="fa fa-user"></i>
+            </div>
+            <div class="modal-body body-conf">
+                <div class="head">Pesan Lapang</div>
+                <div class="desc">Pesan Lapang Secara Online</div>
+                <div class="form-group">
+                  <div class="col-lg-6">
+                    <input type="text" class="form-control form-color" name="waktu" value="03:00 - 04:00" disabled>
+                  </div>
+                  <div class="col-lg-6">
+                    <input type="text" class="form-control form-color" name="harga" value="Rp.150.000,00" disabled>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-lg-12">
+                    <input type="text" class="form-control form-color" name="username" placeholder="Nama Lengkap">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-lg-12">
+                    <input type="text" class="form-control form-color" name="username" placeholder="No Tlp/Hp">
+                  </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button class="button-foot" type="submit">Pesan</button>
+              <button class="button-foot" data-dismiss= "modal">Close</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="sm-modal modal fade" id="login" role="dialog">
+      <div class="modal-dialog dialog-size">
+        <div class="modal-content content-size">
+        <form class="form-horizontal" method="POST" action="module_admin/action_admin.php">
+            <div class="modal-header color-head">
+              <i class="fa fa-user"></i>
+            </div>
+            <div class="modal-body body-conf">
+                <div class="head">Login Member</div>
+                <div class="desc">banyak keuntungan kalau kamu mendaftar jadi member
+                                    diantaranya mendapatkan diskon harga, pesan lapang</div>
+                <div class="form-group">
+                  <div class="col-lg-12">
+                    <input type="text" class="form-control form-color" name="username" placeholder="username">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-lg-12">
+                    <input type="password" class="form-control form-color" id="password" name="password" placeholder="password" required>
+                  </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button class="button-foot" type="submit">Login</button>
+              <button class="button-foot" data-dismiss= "modal">Close</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+   <!-- jQuery -->
+    <script src="assets/js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="assets/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="assets/js/classie.js"></script>
+    <script src="assets/js/cbpAnimatedHeader.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="assets/js/jqBootstrapValidation.js"></script>
+    <script src="assets/js/contact_me.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="assets/js/agency.js"></script>
+</body>
