@@ -1,0 +1,43 @@
+.title {
+	font-size: 24px;
+	font-weight: bold;
+	margin-bottom: 0px;
+	text-align: center;
+	color: #58D66D;
+}
+.stat {
+	font-size: 14px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid black;
+    text-align: center;
+}
+.sub-title {
+	color: #58D66D;
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+	margin-top: 50px;
+}
+.sub-stat {
+	text-align: center;
+	margin-bottom: 40px;
+	font-size: 14px;
+	font-weight: 100;
+}
+
+td {
+	padding-bottom: 10px;
+}
+
+.table th {
+	font-weight: bold;
+	padding: 10px 10px;
+	color: #fff;
+	background: #58D66D;
+}
+.table td{
+	vertical-align: top;
+	padding:5px 10px;
+	text-align: left;
+	border: 1px solid #58D66D;
+}
