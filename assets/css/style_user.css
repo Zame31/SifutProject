@@ -956,6 +956,17 @@ body {
 .color-head i {
     font-size: 40px;
 }
+
+.color-warning {
+    background: #f6bf01;
+    color: #fff;
+    border: none;
+    text-align: center;
+}
+.color-warning i {
+    font-size: 40px;
+}
+
 .body-conf {
     padding: 35px 40px;
 }
@@ -1023,7 +1034,7 @@ body {
     color: #fff;
     border: none;
 }
-.modal-footer .button-foot-pesan {
+.modal-footer .button-foot-pesan{
   background: #959595;
   border-radius: 10px;
   padding: 8px 54px;

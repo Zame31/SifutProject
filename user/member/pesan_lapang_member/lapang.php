@@ -1,33 +1,33 @@
 <?php
-  session_start();
-  $myuser = $_SESSION['username'];
-  $mypass = $_SESSION['password'];
-  $mykode = $_SESSION['kode'];
+    session_start();
+    $myuser = $_SESSION['username'];
+    $mypass = $_SESSION['password'];
+    $myid = $_SESSION['id_pelanggan'];
 
-  include "../../../main/connection.php";
-  include "../../../main/format_hari_ini.php";
+    include "../../../main/connection.php";
+    include "../../../main/format_hari_ini.php";
 
-  $tgl_skr = date('Y-m-d');
-  $date = date($tgl_skr);
+    $tgl_skr = date('Y-m-d');
+    $date = date($tgl_skr);
 
-//Format Tanggal
- $BulanIndo = array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember");
- $tahun = substr($date, 0, 4);
- $bulan = substr($date, 5, 2);
- $tgl   = substr($date, 8, 2);
- $tanggal = $tgl . " " . $BulanIndo[(int)$bulan-1] . " ". $tahun;
+    //Format Tanggal
+    $BulanIndo = array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember");
+    $tahun = substr($date, 0, 4);
+    $bulan = substr($date, 5, 2);
+    $tgl   = substr($date, 8, 2);
+    $tanggal = $tgl . " " . $BulanIndo[(int)$bulan-1] . " ". $tahun;
 
- //Format Hari
-  $day = date('D', strtotime($date));
-  $dayList = array(
-  	'Sun' => 'Minggu',
-  	'Mon' => 'Senin',
-  	'Tue' => 'Selasa',
-  	'Wed' => 'Rabu',
-  	'Thu' => 'Kamis',
-  	'Fri' => 'Jumat',
-  	'Sat' => 'Sabtu'
-  );
+    //Format Hari
+    $day = date('D', strtotime($date));
+    $dayList = array(
+        'Sun' => 'Minggu',
+        'Mon' => 'Senin',
+        'Tue' => 'Selasa',
+        'Wed' => 'Rabu',
+        'Thu' => 'Kamis',
+        'Fri' => 'Jumat',
+        'Sat' => 'Sabtu'
+    );
 
  //Kondisi Untuk Harga
  if ($dayList[$day]== 'Jumat' or $dayList[$day]== 'Sabtu' or $dayList[$day]== 'Minggu') {
@@ -54,10 +54,13 @@
                                   GROUP by waktu_awal
                                 ");
 
-$tampilkan_member = mysql_query("SELECT username,alamat,telepon
-                                 FROM member
-                                 WHERE username = '$myuser'");
+$tampilkan_member = mysql_query("SELECT username,alamat,no_telp
+                                 FROM member,pelanggan
+                                 WHERE username = '$myuser' AND pelanggan.id_pelanggan=member.id_pelanggan");
 
+$view_limit = mysql_query("select kuota_main from member WHERE id_pelanggan='$myid'");
+$limit = mysql_fetch_array($view_limit);
+$count_limit = 8 - $limit['kuota_main'];
 
 ?>
 
@@ -170,7 +173,7 @@ $tampilkan_member = mysql_query("SELECT username,alamat,telepon
 
                 while ($tampil_member=mysql_fetch_array($tampilkan_member)){
                   $myalamat = $tampil_member['alamat'];
-                  $mytelepon = $tampil_member['telepon'];
+                  $mytelepon = $tampil_member['no_telp'];
                 }
 
                 while ($tampil=mysql_fetch_array($tampilkan)){
@@ -236,6 +239,7 @@ $tampilkan_member = mysql_query("SELECT username,alamat,telepon
                                   <input type='hidden' name='nama_pemesan' value='$myuser'>
                                   <input type='hidden' name='alamat' value='$myalamat'>
                                   <input type='hidden' name='no_telp' value='$mytelepon'>
+                                  <input type='hidden' name='id_pelanggan' value='$myid'>
 
                                   <div class='form-group'>
                                     <div class='col-lg-12'>
@@ -244,7 +248,7 @@ $tampilkan_member = mysql_query("SELECT username,alamat,telepon
                                   </div>
                                   <div class='form-group'>
                                     <div class='col-lg-12'>
-                                      <input name='tanggal' type='text' class='form-control form-color form-margin' value='$tampil[waktu_awal] - $tampil[waktu_akhir]' disabled>
+                                      <input type='text' class='form-control form-color form-margin' value='$tampil[waktu_awal] - $tampil[waktu_akhir]' disabled>
                                     </div>
                                   </div>
                                   <div class='form-group'>
@@ -264,6 +268,11 @@ $tampilkan_member = mysql_query("SELECT username,alamat,telepon
                                       <input type='text' class='form-control form-color form-margin' name='nama_pemesan' value='$myuser' disabled>
                                     </div>
                                   </div>
+                                  <div class='form-group'>
+                                    <div class='col-lg-12'>
+                                      <input type='text' class='form-control form-color form-margin' name='nama_pemesan' value='Sisa main $count_limit Jam ' disabled>
+                                    </div>
+                                  </div>
 
 
                                 </div>
@@ -276,6 +285,7 @@ $tampilkan_member = mysql_query("SELECT username,alamat,telepon
                             </div>
                           </div>
                         </div>
+
                         <div class='modal fade' id='pesan2$tampil[id_waktu]$tampil[id_tarif]'  role='dialog'>
                           <div class='modal-dialog dialog-size'>
                             <div class='modal-content content-size'>
@@ -293,6 +303,7 @@ $tampilkan_member = mysql_query("SELECT username,alamat,telepon
                                   <input type='hidden' name='nama_pemesan' value='$myuser'>
                                   <input type='hidden' name='alamat' value='$myalamat'>
                                   <input type='hidden' name='no_telp' value='$mytelepon'>
+                                  <input type='hidden' name='id_pelanggan' value='$myid'>
 
                                   <div class='form-group'>
                                     <div class='col-lg-12'>
@@ -301,7 +312,7 @@ $tampilkan_member = mysql_query("SELECT username,alamat,telepon
                                   </div>
                                   <div class='form-group'>
                                     <div class='col-lg-12'>
-                                      <input name='tanggal' type='text' class='form-control form-color form-margin' value='$tampil[waktu_awal] - $tampil[waktu_akhir]' disabled>
+                                      <input type='text' class='form-control form-color form-margin' value='$tampil[waktu_awal] - $tampil[waktu_akhir]' disabled>
                                     </div>
                                   </div>
                                   <div class='form-group'>

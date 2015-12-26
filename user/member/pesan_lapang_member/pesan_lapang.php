@@ -1,21 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Sifut</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="E-Learning Website" />
+    <meta name="keywords" content="learning, website" />
+    <meta name="author" content="Zamzam Nurzaman" />
+    <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../assets/css/style_user.css">
+    <link rel="stylesheet" href="../../../assets/vendor/font-awesome/css/font-awesome.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Roboto:300,300italic,300,100italic,100,300italic,500,500italic,700,900,900italic,700italic%7COswald:300,300,700" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,300,300italic,300italic,700,700italic' rel='stylesheet' type='text/css'>
+    <script src="../../../assets/js/jquery.min.js"></script>
+    <script src="../../../assets/js/bootstrap.min.js"></script>
+</head>
+<body>
 <?php
     include "../../../main/connection.php";
     date_default_timezone_set('Asia/Jakarta');
     session_start();
 
-
-    $date        = $_POST["tanggal"];
-    $nama_pemesan         = $_POST["nama_pemesan"];
-    $status_pemesan       = 'non-member';
-    $id_lapang            = $_POST["lapang"];
-    $id_waktu             = $_POST["id_waktu"];
-    $tarif                = $_POST["tarif"];
-    $status               = 'menunggu Konfirmasi';
-    $alamat               = $_POST["alamat"];
-    $no_telp              = $_POST["no_telp"];
-
-    $waktu_awal        = $_POST["waktu_awal"];
-    $waktu_akhir        = $_POST["waktu_akhir"];
+    $date = $_POST["tanggal"];
+    $nama_pemesan = $_POST["nama_pemesan"];
+    $status_pemesan = 'member';
+    $id_lapang = $_POST["lapang"];
+    $id_waktu = $_POST["id_waktu"];
+    $tarif = $_POST["tarif"];
+    $status = 'menunggu Konfirmasi';
+    $alamat = $_POST["alamat"];
+    $no_telp = $_POST["no_telp"];
+    $waktu_awal = $_POST["waktu_awal"];
+    $waktu_akhir = $_POST["waktu_akhir"];
+    $id_pelanggan = $_POST['id_pelanggan'];
 
     $BulanIndo = array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember");
     $tahun = substr($date, 0, 4);
@@ -30,41 +47,45 @@
     }
     $tanggal_skr = date('Y-m-d h:i:s');
 
-    $sql    = "INSERT INTO pemesanan(tanggal_pesan,nama_pemesan,status_pemesan,id_lapang,id_waktu,tarif,status)
-                values ('$date', '$nama_pemesan', '$status_pemesan','$id_lapang','$id_waktu','$tarif','$status')";
-    $kueri = mysql_query($sql);
+    $view_limit = mysql_query("select * from member WHERE id_pelanggan='$id_pelanggan'");
+    if($view_limit){
+        $limit = mysql_fetch_array($view_limit);
+        $count_limit = $limit['kuota_main'] + 1;
+    }
 
-    $_SESSION['nama_pemesan'] = $nama_pemesan;
+    if($count_limit <= 2){
+        $update_limit = mysql_query("update member set kuota_main='$count_limit' WHERE id_pelanggan='$id_pelanggan'");
 
-?>
+        $sql    = "INSERT INTO pemesanan values ('','$date','$status_pemesan','$id_lapang','$id_waktu','$tarif','$status','$id_pelanggan')";
+        $kueri = mysql_query($sql);
 
-<!DOCTYPE HTML>
-<html>
-<head>
-  <title>Sifut</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="E-Learning Website" />
-  <meta name="keywords" content="learning, website" />
-  <meta name="author" content="Zamzam Nurzaman" />
-  <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../../../assets/css/style_user.css">
-  <link rel="stylesheet" href="../../../assets/vendor/font-awesome/css/font-awesome.min.css">
-  <link href="http://fonts.googleapis.com/css?family=Roboto:300,300italic,300,100italic,100,300italic,500,500italic,700,900,900italic,700italic%7COswald:300,300,700" rel="stylesheet" type="text/css">
-  <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,300,300italic,300italic,700,700italic' rel='stylesheet' type='text/css'>
-  <script src="../../../assets/js/jquery.min.js"></script>
-  <script src="../../../assets/js/bootstrap.min.js"></script>
-</head>
-<body>
+        $_SESSION['nama_pemesan'] = $nama_pemesan;
+    } else {
+        ?>
+        <div class='modal-dialog dialog-size'>
+            <div class='modal-content content-size'>
+                <div class='modal-header color-warning'>
+                    <i class='fa fa-warning'></i><p> Warning</p>
+                </div>
+                <div class='modal-body body-conf'>
+                    <div class='form-group'>
+                        <div class='col-lg-12'>
+                            Maaf batas voucher waktu bermain anda telah habis untuk 1 bulan.
+                            <b>Silakan melakukan pembayaran</b>
+                        </div>
+                    </div>
+                </div>
+                <div class='modal-footer footer-conf'>
+                    <a href="lapang.php"><button class='btn btn-warning'>Kembali</button></a>
+                </div>
+            </div>
+        </div>
+        <?php
+    }
 
-  <?php
 
-  $tampilkan = mysql_query(" SELECT kode_pesan
-                               FROM pemesanan
-                               WHERE id_lapang = '$id_lapang' AND
-                                     tanggal_pesan = '$date' AND
-                                     nama_pemesan = '$nama_pemesan' AND
-                                     id_waktu = '$id_waktu' ");
+  $tampilkan = mysql_query(" SELECT * FROM pemesanan JOIN pelanggan USING (id_pelanggan)
+                            WHERE id_lapang='$id_lapang' AND tanggal_pesan='$date' AND id_waktu='$id_waktu' AND id_pelanggan='$id_pelanggan'");
 
   while ($tampil=mysql_fetch_array($tampilkan)){
 

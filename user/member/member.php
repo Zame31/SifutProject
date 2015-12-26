@@ -94,7 +94,7 @@ session_start();
                     <?php
                         $myuser = $_SESSION['username'];
                         $mypass = $_SESSION['password'];
-                        $mykode = $_SESSION['kode'];
+                        $myid = $_SESSION['id_pelanggan'];
                         echo "Selamat Datang, $myuser !";
                     ?>
 
