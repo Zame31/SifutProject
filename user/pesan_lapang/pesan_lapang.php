@@ -4,7 +4,7 @@
     session_start();
 
 
-    $date        = $_POST["tanggal"];
+    $date                 = $_POST["tanggal"];
     $nama_pemesan         = $_POST["nama_pemesan"];
     $status_pemesan       = 'non-member';
     $id_lapang            = $_POST["lapang"];
@@ -30,11 +30,21 @@
     }
     $tanggal_skr = date('Y-m-d h:i:s');
 
-    $sql    = "INSERT INTO pemesanan(tanggal_pesan,nama_pemesan,status_pemesan,id_lapang,id_waktu,tarif,status)
-                values ('$date', '$nama_pemesan', '$status_pemesan','$id_lapang','$id_waktu','$tarif','$status')";
+    echo "$date $status_pemesan $id_lapang $id_waktu $tarif $status";
+    //die();
+    $sql2    = "INSERT INTO pelanggan values ('','$nama_pemesan','$alamat','$no_telp','')";
+    $kueri2 = mysql_query($sql2);
+
+    $id_pelanggan  = mysql_insert_id();
+    $id_non_member = "NM".$id_pelanggan;
+
+    $sql3    = "INSERT INTO non_member values ('$id_pelanggan','$id_non_member')";
+    $kueri2 = mysql_query($sql3);
+
+    $sql    = "INSERT INTO pemesanan values ('','$date','sssss','$id_lapang','$id_waktu','$tarif','tidak dikonfirmasi','$id_pelanggan')";
     $kueri = mysql_query($sql);
 
-    $_SESSION['nama_pemesan'] = $nama_pemesan;
+    //$_SESSION['nama_pemesan'] = $nama_pemesan;
 
 ?>
 
@@ -63,7 +73,7 @@
                                FROM pemesanan
                                WHERE id_lapang = '$id_lapang' AND
                                      tanggal_pesan = '$date' AND
-                                     nama_pemesan = '$nama_pemesan' AND
+
                                      id_waktu = '$id_waktu' ");
 
   while ($tampil=mysql_fetch_array($tampilkan)){

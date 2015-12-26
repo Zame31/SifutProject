@@ -33,13 +33,20 @@
 
     $tanggal = date('Y-m-d h:i:s');
 
-    $sql    = "INSERT INTO member(nama,alamat,telepon,email,username,password,aktif,tanggal_daftar)
-                values ('$nama','$alamat','$telepon','$email','$username','$password','Y','$tanggal')";
-    $kueri = mysql_query($sql);
+    $sql2 = "insert into pelanggan value('','$nama','$alamat','$telepon','$email')";
+    $kueri1 = mysql_query($sql2);
+    $id_pelanggan  = mysql_insert_id();
+  //  echo $id_pelanggan;
+    //die();
+    $id_member = "M".$id_pelanggan;
+    $sql    = "INSERT INTO member(id_pelanggan,id_member,username,password,aktif,tanggal_daftar,langganan,kuota_main)
+                values ('$id_pelanggan','$id_member','$username','$password','Y','$tanggal','',0)";
+
+    $kueri2 = mysql_query($sql);
 
     $tampil_admin = mysql_query("SELECT *
-                               FROM member
-                               WHERE tanggal_daftar='$tanggal' ");
+                               FROM pelanggan,member
+                               WHERE tanggal_daftar='$tanggal' and pelanggan.id_pelanggan=member.id_pelanggan ");
 
   while ($tampil=mysql_fetch_array($tampil_admin)){
 
@@ -59,7 +66,7 @@ echo "
                  <div class='col-lg-5'>Alamat</div>
                 <div class='col-lg-7'>$tampil[alamat]</div>
                 <div class='col-lg-5'>Telepon</div>
-                <div class='col-lg-7'>$tampil[telepon]</div>
+                <div class='col-lg-7'>$tampil[no_telp]</div>
                 <div class='col-lg-5'>Username</div>
                 <div class='col-lg-7'>$tampil[username]</div>
                 <div class='col-lg-5'>Password</div>

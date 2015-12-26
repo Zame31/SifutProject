@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 26, 2015 at 05:34 AM
+-- Generation Time: Dec 26, 2015 at 08:14 AM
 -- Server version: 10.1.8-MariaDB
 -- PHP Version: 5.6.14
 
@@ -47,39 +47,22 @@ INSERT INTO `lapang` (`id_lapang`, `nama`, `aktif`) VALUES
 --
 
 CREATE TABLE `member` (
-  `id_member` int(11) NOT NULL,
-  `nama` varchar(50) NOT NULL,
-  `alamat` varchar(100) NOT NULL,
-  `telepon` varchar(20) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `id_pelanggan` int(11) NOT NULL,
+  `id_member` varchar(10) NOT NULL,
+  `username` varchar(30) NOT NULL,
+  `password` varchar(60) NOT NULL,
   `aktif` enum('Y','T') NOT NULL,
   `tanggal_daftar` datetime NOT NULL,
   `langganan` date NOT NULL,
-  `kuota_main` int(11) NOT NULL
+  `kuota_main` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `member`
 --
 
-INSERT INTO `member` (`id_member`, `nama`, `alamat`, `telepon`, `email`, `username`, `password`, `aktif`, `tanggal_daftar`, `langganan`, `kuota_main`) VALUES
-(1, 'aaaaaa', 'aaaaaaaaa', 'aaaaaaaaa', 'aaaaaa', 'aaaaaaa', '552e6a97297c53e592208cf97fbb3b60', 'Y', '2015-12-11 03:05:57', '2015-12-27', 8),
-(91900, 'aaaa', 'aaa', 'telepon', 'email', 'username', 'password', 'Y', '0000-00-00 00:00:00', '0000-00-00', 0),
-(91901, 'Zamzam', 'Jl.Cigadung Raya Timur Rt/rw 02/14 bandung', '085720760068', 'znurzamanz@gmail.com', 'zamzam', 'd0db05aabb991942a64e1b599ce379f9', 'Y', '2015-12-11 03:22:50', '0000-00-00', 0),
-(91902, 'udin balabala', 'sekeloa', '087720210310', 'udin@gmail.com', 'udin', '6bec9c852847242e384a4d5ac0962ba0', 'Y', '2015-12-14 02:28:08', '0000-00-00', 0),
-(91903, 'slkdjasdfk', 'slkfjs', '12312', '123123', 'wabaki31', '9dc15f9e4fd5754d567b3e05be76160c', 'Y', '2015-12-22 09:28:03', '0000-00-00', 0),
-(91904, 's', 's', 's', 's', 's', '03c7c0ace395d80182db07ae2c30f034', 'Y', '2015-12-22 09:34:26', '0000-00-00', 0),
-(91910, 'asflaksdjf', 'alsdkjaslkdaj', 'aslkdjaldksj', 'alskdjalk', 'askdjas', 'a8f5f167f44f4964e6c998dee827110c', 'Y', '2015-12-22 09:39:04', '0000-00-00', 0),
-(91913, 'bbqbb', 'b', 'b', 'b', 'bb', '92eb5ffee6ae2fec3ad71c777531578f', 'Y', '2015-12-22 09:49:00', '0000-00-00', 0),
-(91914, 'azzz', 'zzzz', 'z', 'z', 'z', 'fbade9e36a3f36d3d676c1b808451dd7', 'Y', '2015-12-22 09:51:16', '0000-00-00', 0),
-(91917, 'v', 'vv', 'vv', 'v', 'vv', '9e3669d19b675bd57058fd4664205d2a', 'Y', '2015-12-22 09:59:09', '0000-00-00', 0),
-(91919, '111', '1', '1', '1', '1', 'c4ca4238a0b923820dcc509a6f75849b', 'Y', '2015-12-22 10:00:08', '0000-00-00', 0),
-(91920, 'awwwr', 'r', 'r', 'rr', 'r', '4b43b0aee35624cd95b910189b3dc231', 'Y', '2015-12-23 06:48:23', '0000-00-00', 0),
-(91922, 'uUU', 'u', 'u', 'u', 'u', '7b774effe4a349c6dd82ad4f4f21d34c', 'Y', '2015-12-23 06:49:25', '0000-00-00', 0),
-(91923, 'jJJ', 'J', 'J', 'J', 'J', 'ff44570aca8241914870afbc310cdb85', 'Y', '2015-12-23 06:50:45', '0000-00-00', 0),
-(91924, 'diki darma', 'cianjur', '085522224444', 'diki@gmail.com', 'diki31', 'd0f3c22a00881199c50cd31088100164', 'Y', '2015-12-25 09:43:15', '0000-00-00', 0);
+INSERT INTO `member` (`id_pelanggan`, `id_member`, `username`, `password`, `aktif`, `tanggal_daftar`, `langganan`, `kuota_main`) VALUES
+(6, 'M6', 'zamzam', 'c20ad4d76fe97759aa27a0c99bff6710', 'Y', '2015-12-26 01:39:23', '0000-00-00', 0);
 
 -- --------------------------------------------------------
 
@@ -88,10 +71,46 @@ INSERT INTO `member` (`id_member`, `nama`, `alamat`, `telepon`, `email`, `userna
 --
 
 CREATE TABLE `non_member` (
+  `id_pelanggan` int(11) NOT NULL,
+  `id_non_member` varchar(8) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `non_member`
+--
+
+INSERT INTO `non_member` (`id_pelanggan`, `id_non_member`) VALUES
+(7, 'NM7'),
+(8, 'NM8'),
+(9, 'NM9'),
+(10, 'NM10'),
+(11, 'NM11');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pelanggan`
+--
+
+CREATE TABLE `pelanggan` (
+  `id_pelanggan` int(11) NOT NULL,
   `nama` varchar(50) NOT NULL,
   `alamat` varchar(100) NOT NULL,
-  `telp` varchar(30) NOT NULL
+  `no_telp` varchar(12) NOT NULL,
+  `email` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pelanggan`
+--
+
+INSERT INTO `pelanggan` (`id_pelanggan`, `nama`, `alamat`, `no_telp`, `email`) VALUES
+(6, 'Zamzam Nurzaman', 'Jl.Cigadung Raya Timur Rt/rw 02/14 bandung', '085720760068', 'znurzamanz@gmail.com'),
+(7, 'a', 'a', 'a', ''),
+(8, 'd', 'd', 'd', ''),
+(9, 'd', 'd', 'd', ''),
+(10, 'rrr', 'r', 'r', ''),
+(11, 'g', 'g', 'g', '');
 
 -- --------------------------------------------------------
 
@@ -102,104 +121,23 @@ CREATE TABLE `non_member` (
 CREATE TABLE `pemesanan` (
   `kode_pesan` int(11) NOT NULL,
   `tanggal_pesan` date NOT NULL,
-  `nama_pemesan` varchar(50) NOT NULL,
   `status_pemesan` varchar(30) NOT NULL,
   `id_lapang` char(8) NOT NULL,
   `id_waktu` char(8) NOT NULL,
   `tarif` int(11) NOT NULL,
-  `status` varchar(20) NOT NULL
+  `status` varchar(20) NOT NULL,
+  `id_pelanggan` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pemesanan`
 --
 
-INSERT INTO `pemesanan` (`kode_pesan`, `tanggal_pesan`, `nama_pemesan`, `status_pemesan`, `id_lapang`, `id_waktu`, `tarif`, `status`) VALUES
-(1, '2015-12-16', 'zaza', 'non-member', 'LP01', 'J01', 0, 'menunggu Konfirmasi'),
-(2, '2015-12-16', 'zaza', 'non-member', 'LP02', 'J02', 0, 'menunggu Konfirmasi'),
-(5, '2015-12-18', 'asdfffa', 'non-member', 'LP01', 'J03', 123111, 'pending'),
-(6, '2015-12-16', 'asda', 'asdasda', 'LP02', 'J03', 213123, 'qweq'),
-(7, '2015-12-16', 'asadas', 'aasdas', 'LP02', 'J01', 121212, 'asdadas'),
-(8, '2015-12-19', 'watafak', 'member', 'LP01', 'J03', 130000, 'pending bro'),
-(9, '2015-12-19', 'wawawa', 'non-member', 'LP01', 'J01', 130000, 'menunggu Konfirmasi'),
-(12, '2015-12-19', 'qq', 'non-member', 'LP01', 'J02', 130000, 'menunggu Konfirmasi'),
-(13, '2015-12-19', 'fff', 'non-member', 'LP02', 'J01', 130000, 'menunggu Konfirmasi'),
-(15, '2015-12-19', 'zaaaas', 'non-member', 'LP01', 'J01', 130000, 'menunggu Konfirmasi'),
-(16, '2015-12-22', 'qwww', 'non-member', 'LP02', 'J01', 130000, 'menunggu Konfirmasi'),
-(17, '2015-12-20', 'eqweqwe', 'non-member', 'LP01', 'J02', 130000, 'menunggu Konfirmasi'),
-(18, '2015-12-20', 'wabaki gan', 'non-member', 'LP02', 'J01', 130000, 'menunggu Konfirmasi'),
-(19, '2015-12-16', 'ssaaa', 'non-member', 'LP01', 'J02', 130000, 'menunggu Konfirmasi'),
-(20, '2015-12-16', 'qqaaa', 'non-member', 'LP01', 'J05', 130000, 'menunggu Konfirmasi'),
-(21, '2015-12-22', 'qaaa', 'non-member', 'LP01', 'J02', 130000, 'menunggu Konfirmasi'),
-(22, '2015-12-16', 'diki dardaran', 'non-member', 'LP02', 'J11', 175000, 'menunggu Konfirmasi'),
-(23, '2015-12-20', 'ssasaa', 'non-member', 'LP01', 'J08', 175000, 'menunggu Konfirmasi'),
-(24, '2015-12-22', 'sssssss', 'non-member', 'LP02', 'J06', 150000, 'menunggu Konfirmasi'),
-(25, '2015-12-22', 'aasdasd', 'non-member', 'LP01', 'J06', 150000, 'menunggu Konfirmasi'),
-(26, '2015-12-20', 'asdasdasaa', 'non-member', 'LP01', 'J05', 150000, 'menunggu Konfirmasi'),
-(27, '2015-12-20', '', 'non-member', 'LP01', 'J01', 150000, 'menunggu Konfirmasi'),
-(28, '2015-12-20', 'Zamzam Nurzaman', 'non-member', 'LP01', 'J04', 150000, 'menunggu Konfirmasi'),
-(29, '2015-12-25', 'aa', 'non-member', 'LP01', 'J02', 150000, 'menunggu Konfirmasi'),
-(30, '2015-12-22', 'aaa', 'non-member', 'LP01', 'J03', 130000, 'menunggu Konfirmasi'),
-(31, '2015-12-22', 'aaa', 'non-member', 'LP01', 'J03', 130000, 'menunggu Konfirmasi'),
-(32, '2015-12-22', 'qqq', 'non-member', 'LP01', 'J05', 130000, 'menunggu Konfirmasi'),
-(33, '2015-12-22', 'qqq', 'non-member', 'LP01', 'J05', 130000, 'menunggu Konfirmasi'),
-(34, '2015-12-22', 'ww', 'non-member', 'LP02', 'J05', 130000, 'menunggu Konfirmasi'),
-(35, '2015-12-25', 'jjjl', 'non-member', 'LP01', 'J13', 175000, 'menunggu Konfirmasi'),
-(36, '2015-12-25', 'ddd', 'non-member', 'LP01', 'J01', 150000, 'menunggu Konfirmasi'),
-(37, '2015-12-25', 'watafak', 'non-member', 'LP02', 'J01', 150000, 'menunggu Konfirmasi'),
-(38, '0000-00-00', 'watafak', 'non-member', 'LP02', 'J01', 150000, 'menunggu Konfirmasi'),
-(39, '0000-00-00', 'watafak', 'non-member', 'LP02', 'J01', 150000, 'menunggu Konfirmasi'),
-(40, '0000-00-00', 'watafak', 'non-member', 'LP02', 'J01', 150000, 'menunggu Konfirmasi'),
-(41, '0000-00-00', 'watafak', 'non-member', 'LP02', 'J01', 150000, 'menunggu Konfirmasi'),
-(42, '0000-00-00', 'watafak', 'non-member', 'LP02', 'J01', 150000, 'menunggu Konfirmasi'),
-(43, '0000-00-00', 'ss', 'non-member', 'LP01', 'J03', 150000, 'menunggu Konfirmasi'),
-(44, '0000-00-00', 'ss', 'non-member', 'LP01', 'J03', 150000, 'menunggu Konfirmasi'),
-(45, '0000-00-00', 'ss', 'non-member', 'LP01', 'J03', 150000, 'menunggu Konfirmasi'),
-(46, '0000-00-00', 'ss', 'non-member', 'LP01', 'J03', 150000, 'menunggu Konfirmasi'),
-(47, '0000-00-00', 'ss', 'non-member', 'LP01', 'J03', 150000, 'menunggu Konfirmasi'),
-(48, '0000-00-00', 'ss', 'non-member', 'LP01', 'J03', 150000, 'menunggu Konfirmasi'),
-(49, '0000-00-00', 'aaa', 'non-member', 'LP01', 'J03', 150000, 'menunggu Konfirmasi'),
-(50, '0000-00-00', 'aaa', 'non-member', 'LP01', 'J03', 150000, 'menunggu Konfirmasi'),
-(51, '0000-00-00', 'aaa', 'non-member', 'LP01', 'J03', 150000, 'menunggu Konfirmasi'),
-(52, '2015-12-25', 'aaa', 'non-member', 'LP01', 'J03', 150000, 'menunggu Konfirmasi'),
-(53, '2015-12-25', 'sss', 'non-member', 'LP01', 'J06', 150000, 'menunggu Konfirmasi'),
-(54, '2015-12-25', 'sss', 'non-member', 'LP01', 'J06', 150000, 'menunggu Konfirmasi'),
-(55, '2015-12-25', 'sss', 'non-member', 'LP01', 'J06', 150000, 'menunggu Konfirmasi'),
-(56, '2015-12-22', 'aa', 'non-member', 'LP01', 'J09', 150000, 'menunggu Konfirmasi'),
-(57, '2015-12-22', 'dd', 'non-member', 'LP02', 'J14', 150000, 'menunggu Konfirmasi'),
-(58, '2015-12-22', 'fuad al fariiih', 'non-member', 'LP02', 'J10', 150000, 'menunggu Konfirmasi'),
-(59, '2015-12-25', 'zazaz', 'non-member', 'LP02', 'J09', 175000, 'menunggu Konfirmasi'),
-(60, '2015-12-23', 'zamzam', 'non-member', 'LP01', 'J02', 130000, 'menunggu Konfirmasi'),
-(61, '2015-12-23', 'zamzam', 'non-member', 'LP01', 'J02', 130000, 'menunggu Konfirmasi'),
-(62, '2015-12-23', 'zamzam', 'non-member', 'LP01', 'J02', 130000, 'menunggu Konfirmasi'),
-(63, '2015-12-23', 'zamzam', 'non-member', 'LP01', 'J02', 130000, 'menunggu Konfirmasi'),
-(64, '2015-12-23', 'zamzam', 'non-member', 'LP01', 'J02', 130000, 'menunggu Konfirmasi'),
-(65, '2015-12-23', 'zamzam', 'non-member', 'LP01', 'J02', 130000, 'menunggu Konfirmasi'),
-(66, '2015-12-23', 'zamzam', 'non-member', 'LP01', 'J02', 130000, 'menunggu Konfirmasi'),
-(67, '2015-12-23', 'zamzam', 'non-member', 'LP01', 'J02', 130000, 'menunggu Konfirmasi'),
-(68, '2015-12-23', 'zamzam', 'non-member', 'LP01', 'J02', 130000, 'menunggu Konfirmasi'),
-(69, '2015-12-23', 'zamzam', 'non-member', 'LP01', 'J02', 130000, 'menunggu Konfirmasi'),
-(70, '2015-12-23', 'zamzam', 'non-member', 'LP01', 'J02', 130000, 'menunggu Konfirmasi'),
-(71, '2015-12-23', 'zamzam', 'non-member', 'LP01', 'J02', 130000, 'menunggu Konfirmasi'),
-(72, '2015-12-23', 'rai', 'non-member', 'LP02', 'J04', 130000, 'menunggu Konfirmasi'),
-(73, '2015-12-23', 'rai', 'non-member', 'LP02', 'J04', 130000, 'menunggu Konfirmasi'),
-(74, '2015-12-23', 'd', 'non-member', 'LP01', 'J01', 130000, 'menunggu Konfirmasi'),
-(75, '2015-12-23', 'ww', 'non-member', 'LP01', 'J08', 150000, 'menunggu Konfirmasi'),
-(76, '2015-12-23', 'ww', 'non-member', 'LP01', 'J08', 150000, 'menunggu Konfirmasi'),
-(77, '2015-12-23', 'dd', 'non-member', 'LP02', 'J08', 150000, 'menunggu Konfirmasi'),
-(78, '2015-12-23', 'aa', 'non-member', 'LP01', 'J10', 150000, 'menunggu Konfirmasi'),
-(79, '2015-12-25', 'wwqqe', 'non-member', 'LP02', 'J05', 150000, 'menunggu Konfirmasi'),
-(80, '2015-12-25', 'ss', 'non-member', 'LP02', 'J02', 150000, 'menunggu Konfirmasi'),
-(81, '2015-12-25', 'zamzam', 'non-member', 'LP01', 'J04', 150000, 'menunggu Konfirmasi'),
-(82, '2015-12-25', 'diki31', 'non-member', 'LP01', 'J11', 175000, 'menunggu Konfirmasi'),
-(83, '2015-12-25', 'diki31', 'non-member', 'LP01', 'J05', 150000, 'menunggu Konfirmasi'),
-(84, '2015-12-25', 'S', 'non-member', 'LP02', 'J04', 150000, 'menunggu Konfirmasi'),
-(85, '2015-12-26', 'Zamzam Nur', 'non-member', 'LP01', 'J05', 150000, 'menunggu Konfirmasi'),
-(86, '2015-12-29', '', 'non-member', 'LP02', 'J02', 130000, 'menunggu Konfirmasi'),
-(87, '2015-12-29', 'zamzam', 'non-member', 'LP02', 'J03', 130000, 'menunggu Konfirmasi'),
-(88, '2015-12-26', 'sds', 'non-member', 'LP01', 'J02', 150000, 'menunggu Konfirmasi'),
-(89, '2015-12-29', 'rohim', 'non-member', 'LP01', 'J01', 130000, 'menunggu Konfirmasi'),
-(90, '2015-12-26', 'zamzam', 'non-member', 'LP01', 'J01', 150000, 'menunggu Konfirmasi');
+INSERT INTO `pemesanan` (`kode_pesan`, `tanggal_pesan`, `status_pemesan`, `id_lapang`, `id_waktu`, `tarif`, `status`, `id_pelanggan`) VALUES
+(7, '2015-12-26', 'sss', 'LP01', 'J01', 130000, 'www', 6),
+(8, '2015-12-26', 'sssss', 'LP01', 'J02', 150000, 'tidak dikonfirmasi', 9),
+(9, '2015-12-26', 'sssss', 'LP02', 'J03', 150000, 'tidak dikonfirmasi', 10),
+(10, '2015-12-26', 'sssss', 'LP02', 'J05', 150000, 'tidak dikonfirmasi', 11);
 
 -- --------------------------------------------------------
 
@@ -336,10 +274,19 @@ ALTER TABLE `lapang`
 -- Indexes for table `member`
 --
 ALTER TABLE `member`
-  ADD PRIMARY KEY (`id_member`),
-  ADD UNIQUE KEY `username` (`username`),
-  ADD UNIQUE KEY `telepon` (`telepon`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD KEY `id_pelanggan` (`id_pelanggan`);
+
+--
+-- Indexes for table `non_member`
+--
+ALTER TABLE `non_member`
+  ADD KEY `id_pelanggan` (`id_pelanggan`);
+
+--
+-- Indexes for table `pelanggan`
+--
+ALTER TABLE `pelanggan`
+  ADD PRIMARY KEY (`id_pelanggan`);
 
 --
 -- Indexes for table `pemesanan`
@@ -347,7 +294,8 @@ ALTER TABLE `member`
 ALTER TABLE `pemesanan`
   ADD PRIMARY KEY (`kode_pesan`),
   ADD KEY `id_lapang` (`id_lapang`),
-  ADD KEY `id_waktu` (`id_waktu`);
+  ADD KEY `id_waktu` (`id_waktu`),
+  ADD KEY `id_pelanggan` (`id_pelanggan`);
 
 --
 -- Indexes for table `tarif`
@@ -380,25 +328,38 @@ ALTER TABLE `waktu_tarif`
 --
 
 --
--- AUTO_INCREMENT for table `member`
+-- AUTO_INCREMENT for table `pelanggan`
 --
-ALTER TABLE `member`
-  MODIFY `id_member` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91925;
+ALTER TABLE `pelanggan`
+  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `pemesanan`
 --
 ALTER TABLE `pemesanan`
-  MODIFY `kode_pesan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `kode_pesan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `member`
+--
+ALTER TABLE `member`
+  ADD CONSTRAINT `member_ibfk_1` FOREIGN KEY (`id_pelanggan`) REFERENCES `pelanggan` (`id_pelanggan`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `non_member`
+--
+ALTER TABLE `non_member`
+  ADD CONSTRAINT `non_member_ibfk_1` FOREIGN KEY (`id_pelanggan`) REFERENCES `pelanggan` (`id_pelanggan`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `pemesanan`
 --
 ALTER TABLE `pemesanan`
   ADD CONSTRAINT `pemesanan_ibfk_1` FOREIGN KEY (`id_lapang`) REFERENCES `lapang` (`id_lapang`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `pemesanan_ibfk_2` FOREIGN KEY (`id_waktu`) REFERENCES `waktu` (`id_waktu`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `pemesanan_ibfk_2` FOREIGN KEY (`id_waktu`) REFERENCES `waktu` (`id_waktu`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `pemesanan_ibfk_3` FOREIGN KEY (`id_pelanggan`) REFERENCES `pelanggan` (`id_pelanggan`);
 
 --
 -- Constraints for table `waktu_lapang`
