@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 4.4.14
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 26, 2015 at 08:14 AM
--- Server version: 10.1.8-MariaDB
--- PHP Version: 5.6.14
+-- Generation Time: Dec 30, 2015 at 04:52 AM
+-- Server version: 5.6.26
+-- PHP Version: 5.6.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -26,7 +26,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `lapang`
 --
 
-CREATE TABLE `lapang` (
+CREATE TABLE IF NOT EXISTS `lapang` (
   `id_lapang` char(8) NOT NULL,
   `nama` varchar(30) NOT NULL,
   `aktif` enum('Y','T') NOT NULL
@@ -46,7 +46,7 @@ INSERT INTO `lapang` (`id_lapang`, `nama`, `aktif`) VALUES
 -- Table structure for table `member`
 --
 
-CREATE TABLE `member` (
+CREATE TABLE IF NOT EXISTS `member` (
   `id_pelanggan` int(11) NOT NULL,
   `id_member` varchar(10) NOT NULL,
   `username` varchar(30) NOT NULL,
@@ -62,7 +62,7 @@ CREATE TABLE `member` (
 --
 
 INSERT INTO `member` (`id_pelanggan`, `id_member`, `username`, `password`, `aktif`, `tanggal_daftar`, `langganan`, `kuota_main`) VALUES
-(6, 'M6', 'zamzam', 'c20ad4d76fe97759aa27a0c99bff6710', 'Y', '2015-12-26 01:39:23', '0000-00-00', 0);
+(6, 'M6', 'Fulan', 'c20ad4d76fe97759aa27a0c99bff6710', 'Y', '2015-12-26 01:39:23', '0000-00-00', 2);
 
 -- --------------------------------------------------------
 
@@ -70,7 +70,7 @@ INSERT INTO `member` (`id_pelanggan`, `id_member`, `username`, `password`, `akti
 -- Table structure for table `non_member`
 --
 
-CREATE TABLE `non_member` (
+CREATE TABLE IF NOT EXISTS `non_member` (
   `id_pelanggan` int(11) NOT NULL,
   `id_non_member` varchar(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -92,13 +92,13 @@ INSERT INTO `non_member` (`id_pelanggan`, `id_non_member`) VALUES
 -- Table structure for table `pelanggan`
 --
 
-CREATE TABLE `pelanggan` (
+CREATE TABLE IF NOT EXISTS `pelanggan` (
   `id_pelanggan` int(11) NOT NULL,
   `nama` varchar(50) NOT NULL,
   `alamat` varchar(100) NOT NULL,
   `no_telp` varchar(12) NOT NULL,
   `email` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pelanggan`
@@ -118,7 +118,7 @@ INSERT INTO `pelanggan` (`id_pelanggan`, `nama`, `alamat`, `no_telp`, `email`) V
 -- Table structure for table `pemesanan`
 --
 
-CREATE TABLE `pemesanan` (
+CREATE TABLE IF NOT EXISTS `pemesanan` (
   `kode_pesan` int(11) NOT NULL,
   `tanggal_pesan` date NOT NULL,
   `status_pemesan` varchar(30) NOT NULL,
@@ -127,7 +127,7 @@ CREATE TABLE `pemesanan` (
   `tarif` int(11) NOT NULL,
   `status` varchar(20) NOT NULL,
   `id_pelanggan` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pemesanan`
@@ -137,7 +137,8 @@ INSERT INTO `pemesanan` (`kode_pesan`, `tanggal_pesan`, `status_pemesan`, `id_la
 (7, '2015-12-26', 'sss', 'LP01', 'J01', 130000, 'www', 6),
 (8, '2015-12-26', 'sssss', 'LP01', 'J02', 150000, 'tidak dikonfirmasi', 9),
 (9, '2015-12-26', 'sssss', 'LP02', 'J03', 150000, 'tidak dikonfirmasi', 10),
-(10, '2015-12-26', 'sssss', 'LP02', 'J05', 150000, 'tidak dikonfirmasi', 11);
+(10, '2015-12-26', 'sssss', 'LP02', 'J05', 150000, 'tidak dikonfirmasi', 11),
+(19, '2015-12-26', 'member', 'LP02', 'J01', 150000, 'menunggu Konfirmasi', 6);
 
 -- --------------------------------------------------------
 
@@ -145,7 +146,7 @@ INSERT INTO `pemesanan` (`kode_pesan`, `tanggal_pesan`, `status_pemesan`, `id_la
 -- Table structure for table `tarif`
 --
 
-CREATE TABLE `tarif` (
+CREATE TABLE IF NOT EXISTS `tarif` (
   `id_tarif` char(8) NOT NULL,
   `harga` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -162,10 +163,31 @@ INSERT INTO `tarif` (`id_tarif`, `harga`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `voucher`
+--
+
+CREATE TABLE IF NOT EXISTS `voucher` (
+  `kode_voucher` char(7) NOT NULL,
+  `id_member` varchar(10) NOT NULL,
+  `jenis_voucher` varchar(9) NOT NULL,
+  `tarif` int(11) NOT NULL,
+  `tanggal` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `voucher`
+--
+
+INSERT INTO `voucher` (`kode_voucher`, `id_member`, `jenis_voucher`, `tarif`, `tanggal`) VALUES
+('9Lmuezn', 'M6', 'bulanan', 200000, '2015-12-30 10:45:22');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `waktu`
 --
 
-CREATE TABLE `waktu` (
+CREATE TABLE IF NOT EXISTS `waktu` (
   `id_waktu` char(8) NOT NULL,
   `waktu_awal` time NOT NULL,
   `waktu_akhir` time NOT NULL
@@ -197,7 +219,7 @@ INSERT INTO `waktu` (`id_waktu`, `waktu_awal`, `waktu_akhir`) VALUES
 -- Table structure for table `waktu_lapang`
 --
 
-CREATE TABLE `waktu_lapang` (
+CREATE TABLE IF NOT EXISTS `waktu_lapang` (
   `id_lapang` char(8) NOT NULL,
   `id_waktu` char(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -220,7 +242,7 @@ INSERT INTO `waktu_lapang` (`id_lapang`, `id_waktu`) VALUES
 -- Table structure for table `waktu_tarif`
 --
 
-CREATE TABLE `waktu_tarif` (
+CREATE TABLE IF NOT EXISTS `waktu_tarif` (
   `id_waktu` char(8) NOT NULL,
   `id_tarif` char(8) NOT NULL,
   `status` enum('normal','weekend') NOT NULL
@@ -274,6 +296,7 @@ ALTER TABLE `lapang`
 -- Indexes for table `member`
 --
 ALTER TABLE `member`
+  ADD PRIMARY KEY (`id_member`),
   ADD KEY `id_pelanggan` (`id_pelanggan`);
 
 --
@@ -304,6 +327,13 @@ ALTER TABLE `tarif`
   ADD PRIMARY KEY (`id_tarif`);
 
 --
+-- Indexes for table `voucher`
+--
+ALTER TABLE `voucher`
+  ADD PRIMARY KEY (`kode_voucher`),
+  ADD KEY `id_member` (`id_member`);
+
+--
 -- Indexes for table `waktu`
 --
 ALTER TABLE `waktu`
@@ -331,12 +361,12 @@ ALTER TABLE `waktu_tarif`
 -- AUTO_INCREMENT for table `pelanggan`
 --
 ALTER TABLE `pelanggan`
-  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `pemesanan`
 --
 ALTER TABLE `pemesanan`
-  MODIFY `kode_pesan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `kode_pesan` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
 --
 -- Constraints for dumped tables
 --
@@ -360,6 +390,12 @@ ALTER TABLE `pemesanan`
   ADD CONSTRAINT `pemesanan_ibfk_1` FOREIGN KEY (`id_lapang`) REFERENCES `lapang` (`id_lapang`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `pemesanan_ibfk_2` FOREIGN KEY (`id_waktu`) REFERENCES `waktu` (`id_waktu`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `pemesanan_ibfk_3` FOREIGN KEY (`id_pelanggan`) REFERENCES `pelanggan` (`id_pelanggan`);
+
+--
+-- Constraints for table `voucher`
+--
+ALTER TABLE `voucher`
+  ADD CONSTRAINT `voucher_ibfk_1` FOREIGN KEY (`id_member`) REFERENCES `member` (`id_member`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `waktu_lapang`

@@ -15,19 +15,19 @@ if (!ctype_alnum($username) OR !ctype_alnum($pass)){
 else{
 	$login=mysql_query("SELECT * FROM member WHERE username='$username' AND password='$pass'");
 	$ketemu=mysql_num_rows($login);
-	//$r=mysql_fetch_array($login);
 
     if ($ketemu > 0){
         session_start();
         $_SESSION['username'] = $_POST['username']; // store username
         $_SESSION['password'] = md5($_POST['password']); // store password
 
-        $tampil_admin = mysql_query("SELECT id_pelanggan
+        $tampil_admin = mysql_query("SELECT *
                                      FROM member
                                      WHERE username='$username' AND password='$pass' ");
 
         while ($tampil=mysql_fetch_array($tampil_admin)){
-          $_SESSION['id_pelanggan'] = $tampil['id_pelanggan'];
+            $_SESSION['id_pelanggan'] = $tampil['id_pelanggan'];
+            $_SESSION['id_member'] = $tampil['id_member'];
         }
 
         header('location:../user/member/member.php');

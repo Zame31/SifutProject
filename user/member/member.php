@@ -1,5 +1,6 @@
 <?php
 session_start();
+include "../../main/myfunction.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,6 +42,20 @@ session_start();
         });
       });
    </script>
+    <script type="text/javascript">
+        function voucher(data)
+        {
+            if(data == 'bulanan'){
+                document.forms["form"].tarif.value =  200000;
+            } else
+                if(data == 'tahunan'){
+                    document.forms["form"].tarif.value = 850000;
+                } else
+                    if(data == ''){
+                        document.forms["form"].tarif.value = '';
+                    }
+        }
+    </script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -121,12 +136,12 @@ session_start();
                         <span class="title-fitur">Konfirmasi Pembayaran</span>
                     </a>
                 </div>
-                <!--<div class="col-md-2">
+                <div class="col-md-2">
                     <a data-toggle="modal" href="#langganan" class="f-fitur">
                         <i class="fa fa-user"></i>
                         <span class="title-fitur">Berlangganan</span>
                     </a>
-                </div>-->
+                </div>
             </div>
         </div>
         </div>
@@ -134,7 +149,7 @@ session_start();
     <div class="sm-modal modal fade" id="pembayaran" role="dialog">
       <div class="modal-dialog dialog-size">
         <div class="modal-content content-size">
-         <form method="post" action="pembayaran.php" onSubmit="return validasi(this)" class="form-horizontal">
+         <form method="post" action="../process/pembayaran.php" onSubmit="return validasi(this)" class="form-horizontal">
             <div class="modal-header color-head">
               <i class="fa fa-user"></i>
             </div>
@@ -143,17 +158,17 @@ session_start();
                 <div class="desc">apabila sudah melakukan pembayaran, silahkan konfirmasi disini</div>
                 <div class="form-group">
                   <div class="col-lg-12">
-                    <input type="text" class="form-control form-color" name="noorder" placeholder="Nomer Order">
+                    <input type="text" class="form-control form-color" name="kode" placeholder="Kode Voucher">
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="col-lg-12">
-                    <input type="text" class="form-control form-color" name="kode_customer" placeholder="Kode Customer">
+                    <input type="text" class="form-control form-color" name="tanggal" placeholder="Tanggal Transfer">
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="col-lg-12">
-                    <input type="text" class="form-control form-color" name="no_rek" placeholder="Nomer Rekening">
+                    <input type="text" class="form-control form-color" name="bank" placeholder="Dari BANK">
                   </div>
                 </div>
                 <div class="form-group">
@@ -175,37 +190,43 @@ session_start();
     <div class="sm-modal modal fade" id="langganan" role="dialog">
       <div class="modal-dialog dialog-size">
         <div class="modal-content content-size">
-         <form method="post" action="pembayaran.php" onSubmit="return validasi(this)" class="form-horizontal">
+         <form name="form" method="post" action="pesan_lapang_member/get_voucher.php" class="form-horizontal">
             <div class="modal-header color-head">
               <i class="fa fa-user"></i>
             </div>
             <div class="modal-body body-conf">
                 <div class="head">Belangganan</div>
-                <div class="desc">apabila sudah melakukan pembayaran, silahkan konfirmasi disini</div>
                 <div class="form-group">
-                  <div class="col-lg-12">
-                    <input type="text" class="form-control form-color" name="noorder" placeholder="Nomer Order">
+                    <label class="col-md-3 control-label">Voucher</label>
+                  <div class="col-lg-9">
+                      <select name="jenis" class="form-control form-color" onchange="voucher(jenis.value);" required>
+                          <option value="" selected="selected">Jenis Voucher</option>
+                          <option value="bulanan">Bulanan</option>
+                          <option value="tahunan">Tahunan</option>
+                      </select>
                   </div>
                 </div>
                 <div class="form-group">
-                  <div class="col-lg-12">
-                    <input type="text" class="form-control form-color" name="kode_customer" placeholder="Kode Customer">
-                  </div>
+                    <label class="col-md-3 control-label">Biaya</label>
+                    <div class="col-lg-9">
+                        <input type="text" class="form-control form-color" name="tarif"  readonly>
+                    </div>
                 </div>
                 <div class="form-group">
-                  <div class="col-lg-12">
-                    <input type="text" class="form-control form-color" name="no_rek" placeholder="Nomer Rekening">
-                  </div>
+                    <label class="col-md-3 control-label">Kode Voucher</label>
+                    <div class="col-lg-9">
+                        <input type="text" class="form-control form-color" name="kode" value="<?= random(7) ?>" readonly>
+                    </div>
                 </div>
                 <div class="form-group">
-                  <div class="col-lg-12">
-                    <input type="text" class="form-control form-color" name="jumlah_uang" placeholder="Jumlah Uang yg DiTransfer">
-                  </div>
+                    <div class="col-lg-12">
+                        <label class="col-md-12 control-label text-danger">* Kode voucher digunakan pada saat melakukan konfirmasi pembayaran.</label>
+                    </div>
                 </div>
-
+                <input type="hidden" name="id_member" value="<?= $_SESSION['id_member'] ?>">
             </div>
             <div class="modal-footer">
-              <button class="button-foot" type="submit">Konfirmasi</button>
+              <button class="button-foot" type="submit"  >Submit</button>
               <button class="button-foot" data-dismiss= "modal">Close</button>
             </div>
           </form>
