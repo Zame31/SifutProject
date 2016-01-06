@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "../../main/myfunction.php";
+include "../../main/connection.php"
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -120,22 +121,21 @@ include "../../main/myfunction.php";
             <div class="col-lg-5">
                 <?php
                 $active = mysql_query("select * from member WHERE id_pelanggan='$myid'");
-                $now = date('Y-m-d');
-
                 if($active){
                     $result = mysql_fetch_array($active);
-
-                    if($result['langganan'] <= $now){
-                        ?>
-                        <div class="langganan">Langganan aktif sampai dengan : <?= $result['langganan'] ?></div>
-                        <?php
-                    } else {
-                        ?>
-                        <div class="no-langganan">Tidak Berlangganan</div>
-                        <?php
-                    }
+                    $langganan = $result['langganan'];
                 }
 
+                $now = date('Y-m-d');
+                if($now <= $langganan){
+                    ?>
+                    <div class="langganan">Langganan aktif sampai dengan : <?= $langganan ?></div>
+                    <?php
+                } else {
+                    ?>
+                    <div class="no-langganan">Tidak Berlangganan</div>
+                    <?php
+                }
                 ?>
             </div>
         </div>
