@@ -20,6 +20,7 @@
     include "../../../main/connection.php";
     date_default_timezone_set('Asia/Jakarta');
     session_start();
+    $id_member = $_SESSION['id_member'];
 
     $date = $_POST["tanggal"];
     $nama_pemesan = $_POST["nama_pemesan"];
@@ -53,14 +54,28 @@
         $count_limit = $limit['kuota_main'] + 1;
     }
 
-    if($count_limit <= 2){
+    $check = mysql_query("select * from konfirmasi_voucher JOIN voucher USING (kode_voucher) WHERE id_member='$id_member'");
+    if($check){
+        $voucher = mysql_fetch_array($check);
+        $jenis = $voucher['jenis_voucher'];
+    }
+
+    if($jenis == 'bulanan' and $count_limit <= 8){
         $update_limit = mysql_query("update member set kuota_main='$count_limit' WHERE id_pelanggan='$id_pelanggan'");
 
         $sql    = "INSERT INTO pemesanan values ('','$date','$status_pemesan','$id_lapang','$id_waktu','$tarif','$status','$id_pelanggan')";
         $kueri = mysql_query($sql);
 
         $_SESSION['nama_pemesan'] = $nama_pemesan;
-    } else {
+    } else
+        if($jenis == 'tahunan' and $count_limit <= 16){
+            $update_limit = mysql_query("update member set kuota_main='$count_limit' WHERE id_pelanggan='$id_pelanggan'");
+
+            $sql    = "INSERT INTO pemesanan values ('','$date','$status_pemesan','$id_lapang','$id_waktu','$tarif','$status','$id_pelanggan')";
+            $kueri = mysql_query($sql);
+
+            $_SESSION['nama_pemesan'] = $nama_pemesan;
+        } else {
         ?>
         <div class='modal-dialog dialog-size'>
             <div class='modal-content content-size'>

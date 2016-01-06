@@ -118,8 +118,25 @@ include "../../main/myfunction.php";
                 </span>
             </div>
             <div class="col-lg-5">
-                <!--<div class="langganan">Langganan aktif sampai dengan : 02 Desember 2016</div>
-                <div class="no-langganan">Tidak Berlangganan</div>-->
+                <?php
+                $active = mysql_query("select * from member WHERE id_pelanggan='$myid'");
+                $now = date('Y-m-d');
+
+                if($active){
+                    $result = mysql_fetch_array($active);
+
+                    if($result['langganan'] <= $now){
+                        ?>
+                        <div class="langganan">Langganan aktif sampai dengan : <?= $result['langganan'] ?></div>
+                        <?php
+                    } else {
+                        ?>
+                        <div class="no-langganan">Tidak Berlangganan</div>
+                        <?php
+                    }
+                }
+
+                ?>
             </div>
         </div>
         <div class="fitur">
@@ -158,22 +175,29 @@ include "../../main/myfunction.php";
                 <div class="desc">apabila sudah melakukan pembayaran, silahkan konfirmasi disini</div>
                 <div class="form-group">
                   <div class="col-lg-12">
-                    <input type="text" class="form-control form-color" name="kode" placeholder="Kode Voucher">
+                    <input type="text" class="form-control form-color" name="kode" placeholder="Kode Voucher" required>
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="col-lg-12">
-                    <input type="text" class="form-control form-color" name="tanggal" placeholder="Tanggal Transfer">
+                    <input type="date" class="form-control form-color" name="tanggal" required>
                   </div>
                 </div>
                 <div class="form-group">
-                  <div class="col-lg-12">
-                    <input type="text" class="form-control form-color" name="bank" placeholder="Dari BANK">
-                  </div>
+                    <div class="col-lg-12">
+                        <select name="bank" class="form-control form-color" required>
+                            <option value="" selected="selected">Transfer dari Bank</option>
+                            <option value="BNI">BNI</option>
+                            <option value="BRI">BRI</option>
+                            <option value="Mandiri">Mandiri</option>
+                            <option value="BCA">BCA</option>
+                            <option value="BJB">BJB</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="form-group">
                   <div class="col-lg-12">
-                    <input type="text" class="form-control form-color" name="jumlah_uang" placeholder="Jumlah Uang yg DiTransfer">
+                    <input type="text" class="form-control form-color" name="jumlah_uang" placeholder="Jumlah Uang yang DiTransfer" required>
                   </div>
                 </div>
 
