@@ -34,13 +34,14 @@
 
     if($check){
         $result = mysql_fetch_array($check);
-
+        //echo $kode." ".$result['tarif'];
+        //die();
         if($result['tarif'] == $jumlah_uang){
             $date = strtotime($tanggal);
             $limit = date('Y-m-d', strtotime('+1 month', $date));
 
-            $sql    = mysql_query("INSERT INTO konfirmasi_voucher values ('','$id_member','$kode', '$tanggal','$bank','$jumlah_uang')");
-            $batas = mysql_query("update member set langganan='$limit' WHERE id_member='$id_member'");
+            $sql    = mysql_query("INSERT INTO konfirmasi_voucher values ('','$kode', '$tanggal','$bank','$jumlah_uang')");
+            $batas = mysql_query("update member set langganan='$limit',kuota_main=0 WHERE id_member='$id_member'");
 
             $tampil_admin = mysql_query("SELECT *
                                FROM pelanggan JOIN member USING (id_pelanggan) JOIN voucher USING (id_member) JOIN konfirmasi_voucher USING (kode_voucher)

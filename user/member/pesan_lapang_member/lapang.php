@@ -332,7 +332,11 @@ $count_limit = 8 - $limit['kuota_main'];
                                       <input type='text' class='form-control form-color form-margin' name='nama_pemesan' value='$myuser' disabled>
                                     </div>
                                   </div>
-
+                                    <div class='form-group'>
+                                    <div class='col-lg-12'>
+                                      <input type='text' class='form-control form-color form-margin' name='nama_pemesan' value='Sisa main $count_limit Jam ' disabled>
+                                    </div>
+                                  </div>
 
                                 </div>
 

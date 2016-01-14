@@ -5,9 +5,7 @@ include "../../main/connection.php"
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -63,7 +61,6 @@ include "../../main/connection.php"
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
 </head>
 
 <body id="lapang" class="index">
@@ -87,7 +84,7 @@ include "../../main/connection.php"
                         <a href="index.html"></a>
                     </li>
                     <li class="active">
-                        <a href="../member.php">Beranda</a>
+                        <a href="member.php">Beranda</a>
                     </li>
                     <li >
                         <a href="pesan_lapang_member/lapang.php">Lapang</a>
@@ -129,7 +126,7 @@ include "../../main/connection.php"
                 $now = date('Y-m-d');
                 if($now <= $langganan){
                     ?>
-                    <div class="langganan">Langganan aktif sampai dengan : <?= $langganan ?></div>
+                    <div class="langganan">Langganan aktif sampai dengan : <?= dateconvert($langganan) ?></div>
                     <?php
                 } else {
                     ?>
@@ -163,98 +160,98 @@ include "../../main/connection.php"
         </div>
         </div>
     </section>
-    <div class="sm-modal modal fade" id="pembayaran" role="dialog">
-      <div class="modal-dialog dialog-size">
-        <div class="modal-content content-size">
-         <form method="post" action="../process/pembayaran.php" onSubmit="return validasi(this)" class="form-horizontal">
-            <div class="modal-header color-head">
-              <i class="fa fa-user"></i>
-            </div>
-            <div class="modal-body body-conf">
-                <div class="head">Konfirmasi Pembayaran</div>
-                <div class="desc">apabila sudah melakukan pembayaran, silahkan konfirmasi disini</div>
-                <div class="form-group">
-                  <div class="col-lg-12">
-                    <input type="text" class="form-control form-color" name="kode" placeholder="Kode Voucher" required>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="col-lg-12">
-                    <input type="date" class="form-control form-color" name="tanggal" required>
-                  </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-lg-12">
-                        <select name="bank" class="form-control form-color" required>
-                            <option value="" selected="selected">Transfer dari Bank</option>
-                            <option value="BNI">BNI</option>
-                            <option value="BRI">BRI</option>
-                            <option value="Mandiri">Mandiri</option>
-                            <option value="BCA">BCA</option>
-                            <option value="BJB">BJB</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                  <div class="col-lg-12">
-                    <input type="text" class="form-control form-color" name="jumlah_uang" placeholder="Jumlah Uang yang DiTransfer" required>
-                  </div>
-                </div>
 
+    <div class="sm-modal modal fade" id="pembayaran" role="dialog">
+        <div class="modal-dialog dialog-size">
+            <div class="modal-content content-size">
+                <form method="post" action="../process/pembayaran.php" onSubmit="return validasi(this)" class="form-horizontal">
+                    <div class="modal-header color-head">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <div class="modal-body body-conf">
+                        <div class="head">Konfirmasi Pembayaran</div>
+                        <div class="desc">apabila sudah melakukan pembayaran, silahkan konfirmasi disini</div>
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                <input type="text" class="form-control form-color" name="kode" placeholder="Kode Voucher" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                <input type="date" class="form-control form-color" name="tanggal" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                <select name="bank" class="form-control form-color" required>
+                                    <option value="" selected="selected">Transfer dari Bank</option>
+                                    <option value="BNI">BNI</option>
+                                    <option value="BRI">BRI</option>
+                                    <option value="Mandiri">Mandiri</option>
+                                    <option value="BCA">BCA</option>
+                                    <option value="BJB">BJB</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                <input type="text" class="form-control form-color" name="jumlah_uang" placeholder="Jumlah Uang yang DiTransfer" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="button-foot" type="submit">Konfirmasi</button>
+                        <button class="button-foot" data-dismiss= "modal">Close</button>
+                    </div>
+                </form>
             </div>
-            <div class="modal-footer">
-              <button class="button-foot" type="submit">Konfirmasi</button>
-              <button class="button-foot" data-dismiss= "modal">Close</button>
-            </div>
-          </form>
         </div>
-      </div>
     </div>
 
     <div class="sm-modal modal fade" id="langganan" role="dialog">
-      <div class="modal-dialog dialog-size">
-        <div class="modal-content content-size">
-         <form name="form" method="post" action="pesan_lapang_member/get_voucher.php" class="form-horizontal">
-            <div class="modal-header color-head">
-              <i class="fa fa-user"></i>
-            </div>
-            <div class="modal-body body-conf">
-                <div class="head">Belangganan</div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Voucher</label>
-                  <div class="col-lg-9">
-                      <select name="jenis" class="form-control form-color" onchange="voucher(jenis.value);" required>
-                          <option value="" selected="selected">Jenis Voucher</option>
-                          <option value="bulanan">Bulanan</option>
-                          <option value="tahunan">Tahunan</option>
-                      </select>
-                  </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Biaya</label>
-                    <div class="col-lg-9">
-                        <input type="text" class="form-control form-color" name="tarif"  readonly>
+        <div class="modal-dialog dialog-size">
+            <div class="modal-content content-size">
+                <form name="form" method="post" action="pesan_lapang_member/get_voucher.php" class="form-horizontal">
+                    <div class="modal-header color-head">
+                        <i class="fa fa-user"></i>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Kode Voucher</label>
-                    <div class="col-lg-9">
-                        <input type="text" class="form-control form-color" name="kode" value="<?= random(7) ?>" readonly>
+                    <div class="modal-body body-conf">
+                        <div class="head">Belangganan</div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Voucher</label>
+                            <div class="col-lg-9">
+                                <select name="jenis" class="form-control form-color" onchange="voucher(jenis.value);" required>
+                                    <option value="" selected="selected">Jenis Voucher</option>
+                                    <option value="bulanan">Bulanan</option>
+                                    <option value="tahunan">Tahunan</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Biaya</label>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control form-color" name="tarif"  readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">Kode Voucher</label>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control form-color" name="kode" value="<?= random(7) ?>" readonly>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                <label class="col-md-12 control-label text-danger">* Kode voucher digunakan pada saat melakukan konfirmasi pembayaran.</label>
+                            </div>
+                        </div>
+                        <input type="hidden" name="id_member" value="<?= $_SESSION['id_member'] ?>">
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-lg-12">
-                        <label class="col-md-12 control-label text-danger">* Kode voucher digunakan pada saat melakukan konfirmasi pembayaran.</label>
+                    <div class="modal-footer">
+                        <button class="button-foot" type="submit"  >Submit</button>
+                        <button class="button-foot" data-dismiss= "modal">Close</button>
                     </div>
-                </div>
-                <input type="hidden" name="id_member" value="<?= $_SESSION['id_member'] ?>">
+                </form>
             </div>
-            <div class="modal-footer">
-              <button class="button-foot" type="submit"  >Submit</button>
-              <button class="button-foot" data-dismiss= "modal">Close</button>
-            </div>
-          </form>
         </div>
-      </div>
     </div>
 </body>

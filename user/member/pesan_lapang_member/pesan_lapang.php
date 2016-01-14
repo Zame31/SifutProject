@@ -61,20 +61,24 @@
     }
 
     if($jenis == 'bulanan' and $count_limit <= 8){
+
         $update_limit = mysql_query("update member set kuota_main='$count_limit' WHERE id_pelanggan='$id_pelanggan'");
 
-        $sql    = "INSERT INTO pemesanan values ('','$date','$status_pemesan','$id_lapang','$id_waktu','$tarif','$status','$id_pelanggan')";
-        $kueri = mysql_query($sql);
+        $sql    = mysql_query("INSERT INTO pemesanan values ('','$date','$status_pemesan','$id_lapang','$id_waktu','$tarif','Terkonfirmasi','$id_pelanggan')");
+        if($sql){
+            $_SESSION['nama_pemesan'] = $nama_pemesan;
+        }
 
-        $_SESSION['nama_pemesan'] = $nama_pemesan;
     } else
         if($jenis == 'tahunan' and $count_limit <= 16){
+
             $update_limit = mysql_query("update member set kuota_main='$count_limit' WHERE id_pelanggan='$id_pelanggan'");
 
-            $sql    = "INSERT INTO pemesanan values ('','$date','$status_pemesan','$id_lapang','$id_waktu','$tarif','$status','$id_pelanggan')";
-            $kueri = mysql_query($sql);
+            $sql    = mysql_query("INSERT INTO pemesanan values ('','$date','$status_pemesan','$id_lapang','$id_waktu','$tarif','Terkonfirmasi','$id_pelanggan')");
+            if($sql){
+                $_SESSION['nama_pemesan'] = $nama_pemesan;
+            }
 
-            $_SESSION['nama_pemesan'] = $nama_pemesan;
         } else {
         ?>
         <div class='modal-dialog dialog-size'>
@@ -98,53 +102,39 @@
         <?php
     }
 
-
-  $tampilkan = mysql_query(" SELECT * FROM pemesanan JOIN pelanggan USING (id_pelanggan)
+    $tampilkan = mysql_query(" SELECT * FROM pemesanan JOIN pelanggan USING (id_pelanggan)
                             WHERE id_lapang='$id_lapang' AND tanggal_pesan='$date' AND id_waktu='$id_waktu' AND id_pelanggan='$id_pelanggan'");
 
-  while ($tampil=mysql_fetch_array($tampilkan)){
-
-    $_SESSION['kode_pesan'] = $tampil['kode_pesan'];
-  echo "
-      <div class='container'>
+    while ($tampil=mysql_fetch_array($tampilkan)){
+        $_SESSION['kode_pesan'] = $tampil['kode_pesan'];
+        echo "
+        <div class='container'>
             <div class='align'>
-              <div class='tiket'>
-                <div class='tiket-title'>
-                  <span> Selamat, Pemesanan Lapang Berhasil</span>
-                  <span class='waktu'></span>
+                <div class='tiket'>
+                    <div class='tiket-title'>
+                        <span> Selamat, Pemesanan Lapang Berhasil</span>
+                        <span class='waktu'></span>
+                    </div>
+                    <div class='row tiket-body'>
+                        <div class='col-lg-5'>Tanggal Memesan</div>
+                        <div class='col-lg-7'>: $tanggal_skr</div>
+                        <div class='col-lg-5'>Nama Lengkap</div>
+                        <div class='col-lg-7'>: $nama_pemesan</div>
+                        <div class='col-lg-5'>Alamat</div>
+                        <div class='col-lg-7'>: $alamat</div>
+                        <div class='col-lg-5'>Telepon</div>
+                        <div class='col-lg-7'>: $no_telp</div>
+                        <div class='col-lg-5'>Tanggal Pesan Lapang</div>
+                        <div class='col-lg-7'>: $tanggal_pesan</div>
+                        <div class='col-lg-5'>Nama Lapang</div>
+                        <div class='col-lg-7'>: $nama_lapang</div>
+                        <div class='col-lg-5'>Waktu</div>
+                        <div class='col-lg-7'>: $waktu_awal - $waktu_akhir</div>
+                        <a type='button' class='btn btn-default tiket-button' href='lapang.php'>Kembali</a>
+                        <a type='button' class='btn btn-default tiket-button' href='cetak_bukti_pesan.php' target='_blank'>Cetak Bukti</a>
+                    </div>
                 </div>
-                <div class='row tiket-body'>
-
-                <div class='col-lg-5'>Kode Pemesanan</div>
-                <div class='col-lg-7'>: $tampil[kode_pesan]</div>
-                  <div class='col-lg-5'>Tanggal Memesan</div>
-                  <div class='col-lg-7'>: $tanggal_skr</div>
-                  <div class='col-lg-5'>Nama Lengkap</div>
-                  <div class='col-lg-7'>: $nama_pemesan</div>
-                   <div class='col-lg-5'>Alamat</div>
-                  <div class='col-lg-7'>: $alamat</div>
-                  <div class='col-lg-5'>Telepon</div>
-                  <div class='col-lg-7'>: $no_telp</div>
-                  <div class='col-lg-5'>Tanggal Pesan Lapang</div>
-                  <div class='col-lg-7'>: $tanggal_pesan</div>
-                  <div class='col-lg-5'>Nama Lapang</div>
-                  <div class='col-lg-7'>: $nama_lapang</div>
-                  <div class='col-lg-5'>Waktu</div>
-                  <div class='col-lg-7'>: $waktu_awal - $waktu_akhir</div>
-                  <div class='col-lg-5'>Tarif</div>
-                  <div class='col-lg-7'>: $tarif</div>
-                  <div class='col-lg-5'>Silahkan Transfer ke</div>
-                  <div class='col-lg-7'>: (BNI) 090834002222</div>
-                    <div class='alert-pesan'>Simpan Kode Pemesanan anda karna akan digunakan untuk KONFIRMASI PEMBAYARAN </div>
-                    <a type='button' class='btn btn-default tiket-button' href='lapang.php'>Kembali</a>
-                    <a type='button' class='btn btn-default tiket-button' href='cetak_bukti_pesan.php' target='_blank'>Cetak Bukti</a>
-                </div>
-
-              </div>
-
             </div>
-
-          </div>
-      ";
+        </div>";
 }
-  ?>
+?>

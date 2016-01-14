@@ -16,3 +16,15 @@ function random($length)
     }
     return $string;
 }
+
+function dateconvert($d) {
+    $monthname = array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September",
+        "Oktober", "November", "Desember");
+
+    $year = substr($d, 0, 4);
+    $month = substr($d, 5, 2);
+    $date = substr($d, 8, 2);
+
+    $result = $date." ".$monthname[(int)$month-1]." ".$year;
+    return($result);
+}
