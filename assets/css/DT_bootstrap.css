@@ -57,8 +57,8 @@ table.dataTable thead .sorting_desc_disabled:after{
 }
 .pagination>li:first-child>a, .pagination>li:first-child>span,
 .pagination>li:last-child>a, .pagination>li:last-child>span {
-    background-color: #202020;
-    border: 1px solid #2D3031;
+    background-color: lightgreen;
+    border: 1px solid #000000;
 }
 .pagination>li>a, 
 .pagination>li>span {
@@ -72,8 +72,8 @@ table.dataTable thead .sorting_desc_disabled:after{
 .pagination>.active>span, 
 .pagination>.active>span:focus, 
 .pagination>.active>span:hover {
-    background-color: #38BDFF;
-    border-color: #38BDFF;
+    background-color: lightgreen;
+    border-color: #000000;
 }
 .pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus, .pagination>li>span:hover {
     color: #FFFFFF;

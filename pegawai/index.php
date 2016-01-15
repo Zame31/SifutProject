@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>ZenWalk Distro</title>
+  <title>SIFUT - Sistem Informasi Futsal</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="E-Learning Website" />
@@ -21,7 +21,7 @@
       <div class="row">
         <div class="col-md-5">
           <div class="title">
-            ZenWalk<span class="blue"> Distro</span>
+            Sistem Informasi<span class="blue"> Futsal</span>
             <span class="sub">2015</span>
           </div>
         </div>

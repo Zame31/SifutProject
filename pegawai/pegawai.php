@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>ZenWalk Distro</title>
+  <title>SIFUT - Sistem Informasi Futsal</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="E-Learning Website" />
@@ -25,7 +25,7 @@
   <div class="container-fluid">
     <ul class="nav nav-pills nav-stacked side-nav">
       <!--title-->
-      <div class="title">ZenWalk <span class="blue">Distro</span></div>
+      <div class="title">Sistem Informasi <span class="blue">Futsal</span></div>
      
      <?php include "nav_pegawai.php"; ?>
     </ul>
