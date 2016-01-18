@@ -15,8 +15,8 @@ $tahun = date("Y");
  
 
 include "../../main/connection.php";
-	$strhtml = '<div class="title">SIFUT</div>
-					<div class="stat">Jl. Kemana Saja Hatiku Senang - Bandung</div>
+	$strhtml = '<div class="title">SIFUT : TUBAGUS FUTSAL CLUB (TFC)</div>
+                    <div class="stat">Jln.Tubagus Ismail 5/ No.17 Dago, Bandung</div>
 					<div class="sub-title">LAPORAN DATA PEMESANAN</div>
 					<div class="sub-stat">TAHUN 2015/2016</div>
 					<table>
@@ -38,6 +38,7 @@ include "../../main/connection.php";
 			          <th>No</th>
 			          <th>Kode Pesan</th>
 			          <th>Tanggal Pesan</th>
+			          <th>Jam Pesan</th>
 			          <th>Status Pemesan</th>
 			          <th>Id Lapang</th>
 			          <th>Id Waktu</th>
@@ -61,6 +62,7 @@ include "../../main/connection.php";
 	$strhtml .= "<tr><td>$no</td>
 			         <td>$tampil[kode_pesan]</td>
 			         <td>$tampil[tanggal_pesan]</td>
+			         <td>$tampil[jam_pesan]</td>
 			         <td>$tampil[status_pemesan]</td>
 			         <td>$tampil[id_lapang]</td>
 			         <td>$tampil[id_waktu]</td>

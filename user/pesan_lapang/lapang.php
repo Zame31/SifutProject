@@ -36,7 +36,8 @@
                                   DATE_FORMAT(waktu_akhir, '%H:%i') as waktu_akhir,
                                   group_concat(DISTINCT tanggal_pesan) as 'booked',
                                   group_concat(DISTINCT id_lapang) as 'lapang',
-	                                waktu_tarif.id_waktu,waktu_tarif.id_tarif,tarif.harga
+	                                waktu_tarif.id_waktu,waktu_tarif.id_tarif,tarif.harga,
+                                  jam_pesan,pemesanan.status
                                   FROM waktu
                                   LEFT JOIN pemesanan
                                   ON waktu.id_waktu = pemesanan.id_waktu and
@@ -48,6 +49,9 @@
                                   ON waktu_tarif.id_tarif = tarif.id_tarif
                                   GROUP by waktu_awal
                                 ");
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -99,9 +103,6 @@
                         <a href="index.html"></a>
                     </li>
 
-                    <li>
-                        <a href="../index.php">Login Member</a>
-                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -111,6 +112,10 @@
 
     <section id="lapang">
         <div class="container">
+         <ol class="breadcrumb">
+            <li><a href="../../index.php">Sifut</a></li>
+            <li class="active">Ketersediaan Lapang</li>
+          </ol>
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2 class="section-heading">Ketersediaan Lapang</h2>
@@ -127,7 +132,7 @@
                 <h5>Pilih Tanggal :</h5>
                  <form action="cari_lapang.php" method="post">
                     <div class="input-group search">
-                        <input name="cari" type="date" class="form-control" >
+                        <input name="cari" type="date" class="form-control" min="<?php echo "$mydate" ?>">
                         <span class="input-group-btn">
                           <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
                         </span>
@@ -151,9 +156,24 @@
 
                 $tgl = date('Y-m-d');
 
+                //hapus pemesanan jika tidak konfirmasi
+                $tampil_batas_waktu =  mysql_query(" SELECT jam_pesan, status, tanggal_pesan from pemesanan where tanggal_pesan = '$tgl_skr' ");
+                while ($tampil2=mysql_fetch_array($tampil_batas_waktu)){
+                  $sekarang = date('h:i:s', time() - 3600);
+
+                  echo "$sekarang ---- $tampil2[jam_pesan]-- $tampil2[tanggal_pesan] -- $tampil2[status] <br>";
+
+                  if ( $sekarang >= $tampil2['jam_pesan'] && $tampil2['status'] == 'Belum Konfirmasi') {
+                      mysql_query("DELETE FROM pemesanan WHERE jam_pesan <= '$sekarang' and status = 'Belum Konfirmasi'");
+                  }
+                }
 
                 while ($tampil=mysql_fetch_array($tampilkan)){
+
                     //<td><span class='sudah_pesan'>Sudah Dipesan</span></td>
+                    //$batas_waktu = date( 'H:i:s', strtotime( $tampil['jam_pesan'] ) + 1 * 3600 );  <td> $sekarang -- $tampil[status] $tampil[jam_pesan] -- $tampil[jam_pesan] </td>
+
+
                    include "../../main/format_uang.php";
                     echo "
                         <tr>
@@ -163,28 +183,34 @@
                           $dipesan = $tampil['booked'];
                         echo
                         "</td>
-                          <td>  2 Lapang </td>
                     	";
 
                         	if ($tampil['lapang'] == 'LP01') {
 
-                        		echo "<td><span class='sudah_pesan'>Sudah Dipesan</span></td>
+                        		echo "
+                                  <td>1 Lapang</td>
+                                  <td><span class='sudah_pesan'>Sudah Dipesan</span></td>
                         			    <td><a type='button' href='#pesan2$tampil[id_waktu]$tampil[id_tarif]' data-toggle='modal' class='pesan'>Pesan</a></td>";
                         	}
                         	elseif
                         	 ($tampil['lapang'] == 'LP02') {
 
-                        		echo "<td><a type='button' href='#pesan1$tampil[id_waktu]$tampil[id_tarif]' data-toggle='modal' class='pesan'>Pesan</a></td>
+                        		echo "
+                                <td>1 Lapang</td>
+                                <td><a type='button' href='#pesan1$tampil[id_waktu]$tampil[id_tarif]' data-toggle='modal' class='pesan'>Pesan</a></td>
                         			  <td><span class='sudah_pesan'>Sudah Dipesan</span></td>";
                         	}
                           elseif
                         	 ($tampil['lapang'] == 'LP01,LP02' or $tampil['lapang'] == 'LP02,LP01') {
 
-                        		echo "<td><span class='sudah_pesan'>Sudah Dipesan</span></td>
+                        		echo "
+                                  <td>0 Lapang</td>
+                                  <td><span class='sudah_pesan'>Sudah Dipesan</span></td>
                         			    <td><span class='sudah_pesan'>Sudah Dipesan</span></td>";
                         	}
                         	else {
                         		echo "
+                                <td>2 Lapang</td>
               									<td><a type='button' href='#pesan1$tampil[id_waktu]$tampil[id_tarif]' data-toggle='modal' class='pesan'>Pesan</a></td>
               									<td><a type='button' href='#pesan2$tampil[id_waktu]$tampil[id_tarif]' data-toggle='modal' class='pesan'>Pesan</a></td>
                         			";
@@ -237,17 +263,22 @@
                                   </div>
                                   <div class='form-group'>
                                     <div class='col-lg-12'>
-                                      <input type='text' class='form-control form-color form-margin' name='nama_pemesan' placeholder='Nama Pemesan'>
+                                      <input type='text' class='form-control form-color form-margin' name='nama_pemesan' placeholder='Nama Pemesan' required>
                                     </div>
                                   </div>
                                   <div class='form-group'>
                                     <div class='col-lg-12'>
-                                      <input type='text' class='form-control form-color form-margin' name='alamat' placeholder='Alamat Pemesan'>
+                                      <input type='text' class='form-control form-color form-margin' name='alamat' placeholder='Alamat Pemesan' required>
                                     </div>
                                   </div>
                                   <div class='form-group'>
                                     <div class='col-lg-12'>
-                                      <input type='text' class='form-control form-color form-margin' name='no_telp' placeholder='No Telepon'>
+                                      <input type='text' class='form-control form-color form-margin' name='no_telp' placeholder='No Telepon' required>
+                                    </div>
+                                  </div>
+                                  <div class='form-group'>
+                                    <div class='col-lg-12'>
+                                      <input type='text' class='form-control form-color form-margin' name='email' placeholder='Email' required>
                                     </div>
                                   </div>
 
@@ -313,7 +344,11 @@
                                       <input type='text' class='form-control form-color form-margin' name='no_telp' placeholder='No Telepon'>
                                     </div>
                                   </div>
-
+                                  <div class='form-group'>
+                                    <div class='col-lg-12'>
+                                      <input type='text' class='form-control form-color form-margin' name='email' placeholder='Email' required>
+                                    </div>
+                                  </div>
                                 </div>
 
                                 <div class='modal-footer footer-conf'>

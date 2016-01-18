@@ -7,7 +7,7 @@
 </script>
 
 <?php
-session_start();
+
 
 //CONTENT
 $action ="module_pemesanan/action_pemesanan.php";

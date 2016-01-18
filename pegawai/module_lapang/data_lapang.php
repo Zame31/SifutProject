@@ -7,7 +7,6 @@
 </script>
 
 <?php
-session_start();
 
 //CONTENT
 $action ="module_lapang/action_lapang.php";

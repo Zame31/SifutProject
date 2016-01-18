@@ -15,8 +15,8 @@ $tahun = date("Y");
  
 
 include "../../main/connection.php";
-	$strhtml = '<div class="title">SIFUT</div>
-					<div class="stat">Jl. Kemana Saja Hatiku Senang - Bandung</div>
+	$strhtml = '<div class="title">SIFUT : TUBAGUS FUTSAL CLUB (TFC)</div>
+                    <div class="stat">Jln.Tubagus Ismail 5/ No.17 Dago, Bandung</div>
 					<div class="sub-title">LAPORAN DATA MEMBER</div>
 					<div class="sub-stat">TAHUN 2015/2016</div>
 					<table>
@@ -38,8 +38,11 @@ include "../../main/connection.php";
 			          <th>No</th>
 			          <th>ID Pelanggan</th>
 			          <th>ID Member</th>
+			          <th>Nama</th>
+			          <th>Alamat</th>
+			          <th>No Telp</th>
+			          <th>Email</th>
 			          <th>Username</th>
-			          <th>Password</th>
 			          <th>Aktif</th>
 			          <th>Tanggal Daftar</th>
 			          <th>Langganan</th>
@@ -47,14 +50,17 @@ include "../../main/connection.php";
 			          
 			        </tr>";
 	$no = 0;
-	$tampil_mahasiswa = mysql_query("SELECT * FROM member ORDER BY id_member");
+	$tampil_mahasiswa = mysql_query("SELECT * FROM member,Pelanggan ORDER BY id_member");
 	while ($tampil=mysql_fetch_array($tampil_mahasiswa)){
 	$no++;
 	$strhtml .= "<tr><td>$no</td>
 			         <td>$tampil[id_pelanggan]</td>
 			         <td>$tampil[id_member]</td>
+			         <td>$tampil[nama]</td>
+			         <td>$tampil[alamat]</td>
+			         <td>$tampil[no_telp]</td>
+			         <td>$tampil[email]</td>
 			         <td>$tampil[username]</td>
-			         <td>$tampil[password]</td>
 			         <td>$tampil[aktif]</td>
 			         <td>$tampil[tanggal_daftar]</td>
 			         <td>$tampil[langganan]</td>

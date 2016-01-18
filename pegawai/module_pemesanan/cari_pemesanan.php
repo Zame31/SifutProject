@@ -2,7 +2,8 @@
   $cari       = $_POST["cari"];
 	$tampilkan = mysql_query("SELECT * FROM pemesanan 
                               WHERE kode_pesan like '%$cari%' or 
-                               tangal_pesan like '%$cari%' or
+                               tanggal_pesan like '%$cari%' or
+                               jam_pesan like '%$cari%' or
                                status_pemesan like '%$cari%' or
                                id_pemesanan like '%$cari%' or
                                id_waktu like '%$cari%' or

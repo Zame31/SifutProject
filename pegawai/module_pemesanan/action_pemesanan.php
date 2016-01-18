@@ -11,6 +11,7 @@ $act=$_GET['act'];
 if ($module=='data_pemesanan' AND $act=='update_pemesanan'){
     mysql_query("UPDATE pemesanan SET
                                     tanggal_pesan   = '$_POST[tanggal_pesan]',
+                                    jam_pesan   = '$_POST[jam_pesan]',
                                     status_pemesan  = '$_POST[status_pemesan]',
                                     id_lapang       = '$_POST[id_lapang]',
                                     id_waktu        = '$_POST[id_waktu]',
@@ -39,6 +40,7 @@ elseif ($module=='data_pemesanan' AND $act=='export'){
 else {
   $kode_pesan         = $_POST["kode_pesan"];
   $tanggal_pesan      = $_POST["tanggal_pesan"];
+  $jam_pesan          = $_POST["jam_pesan"];
   $status_pemesan     = $_POST["status_pemesan"];
   $id_lapang          = $_POST["id_lapang"];
   $id_waktu           = $_POST["id_waktu"];
@@ -47,8 +49,8 @@ else {
   $id_pelanggan       = $_POST["id_pelanggan"];
   
                                   
-  $sql    = "INSERT INTO pemesanan(kode_pesan,tanggal_pesan,status_pemesan,id_lapang,id_waktu,tarif,status,id_pelanggan)
-              values ('$kode_pesan','$tanggal_pesan','$status_pemesan','$id_lapang','$id_waktu','$tarif','$status','$id_pelanggan')";
+  $sql    = "INSERT INTO pemesanan(kode_pesan,tanggal_pesan,jam_pesan,status_pemesan,id_lapang,id_waktu,tarif,status,id_pelanggan)
+              values ('$kode_pesan','$tanggal_pesan','$jam_pesan',$status_pemesan','$id_lapang','$id_waktu','$tarif','$status','$id_pelanggan')";
   $kueri = mysql_query($sql);
   header('location:../pegawai.php?module=data_pemesanan');
 }

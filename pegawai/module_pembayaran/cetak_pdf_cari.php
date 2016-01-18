@@ -15,8 +15,8 @@ $tahun = date("Y");
  
 
 include "../../main/connection.php";
-	$strhtml = '<div class="title">SIFUT</div>
-					<div class="stat">Jl. Kemana Saja Hatiku Senang - Bandung</div>
+	$strhtml = '<div class="title">SIFUT : TUBAGUS FUTSAL CLUB (TFC)</div>
+                    <div class="stat">Jln.Tubagus Ismail 5/ No.17 Dago, Bandung</div>
 					<div class="sub-title">LAPORAN DATA PEMBAYARAN</div>
 					<div class="sub-stat">TAHUN 2015/2016</div>
 					<table>

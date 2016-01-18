@@ -32,8 +32,8 @@ td {
 include "../../main/format_hari_ini.php";
 
 echo '
-<div class="title">SIFUT </div>
-          <div class="stat">Jl. Kemana Saja Hatiku Senang - Bandung</div>
+<div class="title">SIFUT : TUBAGUS FUTSAL CLUB (TFC)</div>
+                    <div class="stat">Jln.Tubagus Ismail 5/ No.17 Dago, Bandung</div>
           <hr size="2">
           <div class="sub-title">LAPORAN DATA MEMBER</div>
           <div class="sub-stat">TAHUN 2015/2016</div>
@@ -56,7 +56,7 @@ echo '
       <tbody border="1">
 <?php
 	include "../../main/connection.php";
-	$tampilkan = mysql_query("SELECT * FROM member ORDER BY id_member");        
+	$tampilkan = mysql_query("SELECT * FROM member,pelanggan ORDER BY id_member");        
     $no=1;
     while ($tampil=mysql_fetch_array($tampilkan)){
        include "table/table_body.php";

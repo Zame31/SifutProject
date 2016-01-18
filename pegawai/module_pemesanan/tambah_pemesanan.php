@@ -17,17 +17,23 @@
         <div class="modal-header">
           <p><i class="fa fa-user-plus"></i> Tambah</p>
         </div>
-        
+          <div class="modal-body">
             <div class="form-group">
               <label for="admin-name" class="col-lg-4 control-label">Tanggal Pesan : </label>
               <div class="col-lg-8">
-                <input type="date" class="form-control" name="tanggal_pesan">
+                <input type="date" class="form-control" name="tanggal_pesan" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="admin-name" class="col-lg-4 control-label">Jam Pesan : </label>
+              <div class="col-lg-8">
+                <input type="text" class="form-control" name="jam_pesan" required>
               </div>
             </div>
              <div class="form-group">
               <label for="admin-name" class="col-lg-4 control-label"> Status Pemesanan : </label>
               <div class="col-lg-8">
-                <input type="text" class="form-control" name="status_pemesan" placeholder="Status Pemesanan">
+                <input type="text" class="form-control" name="status_pemesan" placeholder="Status Pemesanan" required>
               </div>
             </div>
               <div class="form-group" >
@@ -69,9 +75,9 @@
             <div class="form-group">
               <label for="admin-name" class="col-lg-4 control-label"> Status </label>
               <div class="col-lg-8">
-                <input type="text" class="form-control" name="status" placeholder="Status">
+                <input type="text" class="form-control" name="status" placeholder="Status" required>
               </div>
-            </div> 
+            </div>
              <div class="form-group" >
               <label for="admin-name" class="col-lg-4 control-label"> Id Pelanggan </label>
               <div class="col-lg-8">
@@ -84,8 +90,8 @@
                 </select>
               </div>
             </div>
+          </div>
 
-        </div>
         <div class="modal-footer">
           <button class="button-foot" data-dismiss= "modal">Close</button>
           <button class="button-foot" type="submit">Submit</button>

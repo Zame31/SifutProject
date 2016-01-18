@@ -54,7 +54,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand scroll" href="#page-top">SIFUT  </a>
+                <a class="navbar-brand scroll" href="#page-top">SIFUT TFC </a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -92,8 +92,8 @@
     <header>
         <div class="container">
             <div class="intro-text">
-                <div class="intro-heading">Selamat Datang Di Futsal Online </div>
-                <div class="intro-lead-in">Kami mempermudahmu untuk memesan Fasilitas Futsal secaran online.</div>
+                <div class="intro-heading">Selamat Datang Di sifut tfc </div>
+                <div class="intro-lead-in">mempermudahmu untuk memesan lapangan Futsal secaran online.</div>
                 <a href="#daftar" class="page-scroll btn btn-xl" data-toggle="modal">Daftar Member</a>
                 <a href="user/pesan_lapang/lapang.php" class="page-scroll btn btn-xl">Pesan Lapang</a>
             </div>
@@ -155,11 +155,12 @@
                                 <i class="fa fa-plus fa-3x"></i>
                             </div>
                         </div>
-                        <img src="assets/img/portfolio/roundicons.png" class="img-responsive" alt="">
+                        <img src="assets/img/8.jpg" class="img-responsive" alt="">
                     </a>
                     <div class="portfolio-caption">
-                        <h4>Round Icons</h4>
-                        <p class="text-muted">Graphic Design</p>
+                        <h4>Lapang Sintetis</h4>
+                        <p class="text-muted">Tersedia 2 Lapang Sintetis</p>
+                        
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6 portfolio-item">
@@ -169,11 +170,11 @@
                                 <i class="fa fa-plus fa-3x"></i>
                             </div>
                         </div>
-                        <img src="assets/img/portfolio/startup-framework.png" class="img-responsive" alt="">
+                        <img src="assets/img/10.jpg" class="img-responsive" alt="">
                     </a>
                     <div class="portfolio-caption">
-                        <h4>Startup Framework</h4>
-                        <p class="text-muted">Website Design</p>
+                        <h4>Parkiran</h4>
+                        <p class="text-muted">untuk mobil dan motor</p>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6 portfolio-item">
@@ -183,11 +184,11 @@
                                 <i class="fa fa-plus fa-3x"></i>
                             </div>
                         </div>
-                        <img src="assets/img/portfolio/treehouse.png" class="img-responsive" alt="">
+                       <img src="assets/img/9.jpg" class="img-responsive" alt="">
                     </a>
                     <div class="portfolio-caption">
-                        <h4>Treehouse</h4>
-                        <p class="text-muted">Website Design</p>
+                        <h4>Mushola</h4>
+                        <p class="text-muted">Untuk Pria dan Wanita</p>
                     </div>
                 </div>
             </div>
@@ -207,7 +208,7 @@
                 <div class="col-lg-4">
                     <span class="head-info">Jadwal Buka</span>
                     <div class="content-info">
-                        <div class="hari">Senin - Jum'at</div>
+                        <div class="hari">Senin - Minggu</div>
                         <div class="waktu">08:00 - 22:00</div>
                     </div>
 
@@ -239,7 +240,7 @@
                     <span class="head-info">Event/Acara</span>
                     <div class="content-info3">
                         <ul>
-                            <li>Ada Turnament Futsal Pada Tanggal 5 - 10 Desember 2015</li>
+                            <li>Ada Turnament Futsal Pada Tanggal 5 - 10 Februari 2016</li>
 
                         </ul>
                     </div>
@@ -317,18 +318,14 @@
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
                             <!-- Project Details Go Here -->
-                            <h2>Project Name</h2>
-                            <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-responsive img-centered" src="img/portfolio/roundicons-free.png" alt="">
-                            <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                            <p>
-                                <strong>Want these icons in this portfolio item sample?</strong>You can download 60 of them for free, courtesy of <a href="https://getdpd.com/cart/hoplink/18076?referrer=bvbo4kax5k8ogc">RoundIcons.com</a>, or you can purchase the 1500 icon set <a href="https://getdpd.com/cart/hoplink/18076?referrer=bvbo4kax5k8ogc">here</a>.</p>
-                            <ul class="list-inline">
-                                <li>Date: July 2014</li>
-                                <li>Client: Round Icons</li>
-                                <li>Category: Graphic Design</li>
-                            </ul>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
+                            <h2>Lapang Sintetis</h2>
+                            <p class="item-intro text-muted">Tersedia 2 Lapang Sintetis</p>
+                            <img class="img-responsive img-centered" src="assets/img/8.jpg" alt="">
+                            <p>Tubagus Futsal Club Memiliki 2 Lapangan Futsal yang berumput sitentis,
+                                dengan lampu penerangan yang baik. Sehingga kamu dapat bermain futsal dengan nyaman. 
+                                Lapangan sintetis berukuran 18M x 28M dengan lampu LED BRIDGELUX 500 watt yang tidak akan membuat pemain kepanasan.          <p>
+                              
+                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Kembali</button>
                         </div>
                     </div>
                 </div>
@@ -349,12 +346,13 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                            <h2>Project Heading</h2>
-                            <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-responsive img-centered" src="img/portfolio/startup-framework-preview.png" alt="">
-                            <p><a href="http://designmodo.com/startup/?u=787">Startup Framework</a> is a website builder for professionals. Startup Framework contains components and complex blocks (PSD+HTML Bootstrap themes and templates) which can easily be integrated into almost any design. All of these components are made in the same style, and can easily be integrated into projects, allowing you to create hundreds of solutions for your future projects.</p>
-                            <p>You can preview Startup Framework <a href="http://designmodo.com/startup/?u=787">here</a>.</p>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
+                            <h2>Parkiran</h2>
+                            <p class="item-intro text-muted">untuk mobil dan motor</p>
+                            <img class="img-responsive img-centered" src="assets/img/10.jpg" alt="">
+                            <p>Tubagus Futsal Club Memiliki parkiran yang luas, dapat menampung mobil dan motor dengan leluasa dan aman
+                            <p>
+                              
+                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Kembali</button>
                         </div>
                     </div>
                 </div>
@@ -375,13 +373,13 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                            <!-- Project Details Go Here -->
-                            <h2>Project Name</h2>
-                            <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
-                            <img class="img-responsive img-centered" src="img/portfolio/treehouse-preview.png" alt="">
-                            <p>Treehouse is a free PSD web template built by <a href="https://www.behance.net/MathavanJaya">Mathavan Jaya</a>. This is bright and spacious design perfect for people or startup companies looking to showcase their apps or other projects.</p>
-                            <p>You can download the PSD template in this portfolio sample item at <a href="http://freebiesxpress.com/gallery/treehouse-free-psd-web-template/">FreebiesXpress.com</a>.</p>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
+                            <h2>Mushola</h2>
+                            <p class="item-intro text-muted">untuk Pria dan Wanita</p>
+                            <img class="img-responsive img-centered" src="assets/img/9.jpg" alt="">
+                            <p>Tubagus Futsal Club Memiliki mushola untuk pria dan wanita, memfasilitasi umat muslim untuk beribadah
+                            <p>
+                              
+                            <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Kembali</button>
                         </div>
                     </div>
                 </div>
@@ -474,7 +472,7 @@
    <?php
         include "user/login.php";
         include "user/daftar_member/daftar_form.php";
-        include "user/pembayaran_form.php";
+        include "user/pembayaran/pembayaran_form.php";
    ?>
 
 

@@ -1,7 +1,7 @@
 <?php
   $cari       = $_POST["cari"];
-	$tampilkan = mysql_query("SELECT * FROM lapang 
-                              WHERE id_lapang like '%$cari%' or 
+	$tampilkan = mysql_query("SELECT * FROM lapang
+                              WHERE id_lapang like '%$cari%' or
                                nama like '%$cari%' or
                                aktif like '%$cari%'");
 
@@ -22,7 +22,7 @@
             <input name="cari" type="text" class="form-control" placeholder="Search for...">
             <span class="input-group-btn">
               <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
-              
+
             </span>
           </div>
 
@@ -31,16 +31,14 @@
       </div>
        <div class="col-md-6">
         <div class="btn-group" role="group" aria-label="fungsional">
-          <a type="button" class="btn btn-default" href="#tambah_data" data-toggle="modal"><i class="fa fa-user-plus"></i></a>
-          <a type="button" class="btn btn-default" href="module_lapang/action_lapang.php?module=data_lapang&act=export"><i class="fa fa-download"> Excel</i></a>
-          
-          <form action="module_lapang/cetak_pdf_cari.php" method="post">
-            <?php 
+
+          <form action="module_lapang/cetak_pdf_cari.php" method="post" target="_blank">
+            <?php
               echo "
                         <input name='cari2' type='hidden' class='btn btn-default' value='$cari'>
                   ";
             ?>
-            <button class="btn btn-default" type="submit"><i class="fa fa-print"></i></button>
+            <button class="btn btn-default" type="submit" ><i class="fa fa-print"></i></button>
           </form>
 
 
@@ -54,7 +52,7 @@
           <th width="20px">Aksi</th>
       </thead>
       <tbody>
-<?php        
+<?php
     $no=1;
     while ($tampil=mysql_fetch_array($tampilkan)){
         include "table/table_body.php";

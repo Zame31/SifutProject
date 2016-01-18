@@ -7,7 +7,7 @@
 </script>
 
 <?php
-session_start();
+
 
 //CONTENT
 $action ="module_pembayaran/action_pembayaran.php";

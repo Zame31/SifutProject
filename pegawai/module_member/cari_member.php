@@ -1,14 +1,20 @@
 <?php
   $cari       = $_POST["cari"];
-	$tampilkan = mysql_query("SELECT * FROM member 
-                              WHERE id_member like '%$cari%' or 
+	$tampilkan = mysql_query("SELECT * FROM member,pelanggan
+                              WHERE
+                              member.id_pelanggan = pelanggan.id_pelanggan and
+                              (member.id_member like '%$cari%' or
+                               nama like '%$cari%' or
+                               alamat like '%$cari%' or
+                               no_telp like '%$cari%' or
+                               email like '%$cari%' or
                                username like '%$cari%' or
                                password like '%$cari%' or
-                               id_pelanggan like '%$cari%' or
+                               pelanggan.id_pelanggan like '%$cari%' or
                                aktif like '%$cari%' or
                                tanggal_daftar like '%$cari%' or
                                langganan like '%$cari%' or
-                               kuota_main like '%$cari%'");
+                               kuota_main like '%$cari%')");
 ?>
 
 
@@ -25,7 +31,7 @@
             <input name="cari" type="text" class="form-control" placeholder="Search for...">
             <span class="input-group-btn">
               <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
-              
+
             </span>
           </div>
 
@@ -34,11 +40,9 @@
       </div>
        <div class="col-md-6">
         <div class="btn-group" role="group" aria-label="fungsional">
-          <a type="button" class="btn btn-default" href="#tambah_data" data-toggle="modal"><i class="fa fa-user-plus"></i></a>
-          <a type="button" class="btn btn-default" href="module_member/action_member.php?module=data_member&act=export"><i class="fa fa-download"> Excel</i></a>
-          
-          <form action="module_member/cetak_pdf_cari.php" method="post">
-            <?php 
+
+          <form action="module_member/cetak_pdf_cari.php" method="post" target="_blank">
+            <?php
               echo "
                         <input name='cari2' type='hidden' class='btn btn-default' value='$cari'>
                   ";
@@ -57,7 +61,7 @@
           <th width="20px">Aksi</th>
       </thead>
       <tbody>
-<?php        
+<?php
     $no=1;
     while ($tampil=mysql_fetch_array($tampilkan)){
         include "table/table_body.php";

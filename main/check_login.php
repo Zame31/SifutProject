@@ -13,7 +13,7 @@ if (!ctype_alnum($username) OR !ctype_alnum($pass)){
   echo "<div class='error msg'>Injeksi Gagal</div>";
 }
 else{
-	$login=mysql_query("SELECT * FROM person WHERE username='$username' AND password='$pass'");
+	$login=mysql_query("SELECT * FROM pegawai WHERE username='$username' AND password='$pass'");
 	$ketemu=mysql_num_rows($login);
 	$r=mysql_fetch_array($login);
 

@@ -7,6 +7,7 @@ if ($_GET['module']=='beranda'){
           <li role="presentation"><a href="?module=data_member">Data Member</a></li>
           <li role="presentation"><a href="?module=data_pembayaran">Data Pembayaran</a></li>
           <li role="presentation"><a href="?module=data_pemesanan">Data Pemesanan</a></li>
+          <li role="presentation"><a href="?module=data_pegawai">Data Pegawai</a></li>
         
           ';
          
@@ -18,6 +19,7 @@ if ($_GET['module']=='beranda'){
               <li role="presentation"><a href="?module=data_member">Data Member</a></li>
               <li role="presentation"><a href="?module=data_pembayaran">Data Pembayaran</a></li>
               <li role="presentation"><a href="?module=data_pemesanan">Data Pemesanan</a></li>
+              <li role="presentation"><a href="?module=data_pegawai">Data Pegawai</a></li>
              
           ';
       }
@@ -28,6 +30,7 @@ if ($_GET['module']=='beranda'){
               <li role="presentation" class="active"><a href="?module=data_member">Data Member</a></li>
               <li role="presentation"><a href="?module=data_pembayaran">Data Pembayaran</a></li>
               <li role="presentation"><a href="?module=data_pemesanan">Data Pemesanan</a></li>
+              <li role="presentation"><a href="?module=data_pegawai">Data Pegawai</a></li>
              
           ';
       }
@@ -38,6 +41,7 @@ if ($_GET['module']=='beranda'){
               <li role="presentation"><a href="?module=data_member">Data Member</a></li>
               <li role="presentation" class="active"><a href="?module=data_pembayaran">Data Pembayaran</a></li>            
               <li role="presentation"><a href="?module=data_pemesanan">Data Pemesanan</a></li>
+              <li role="presentation"><a href="?module=data_pegawai">Data Pegawai</a></li>
           ';
       }
   elseif ($_GET['module']=='data_pemesanan'){
@@ -47,6 +51,18 @@ if ($_GET['module']=='beranda'){
               <li role="presentation"><a href="?module=data_member">Data Member</a></li>
               <li role="presentation"><a href="?module=data_pembayaran">Data Pembayaran</a></li>
               <li role="presentation" class="active"><a href="?module=data_pemesanan">Data Pemesanan</a></li>
+              <li role="presentation"><a href="?module=data_pegawai">Data Pegawai</a></li>
+             
+          ';
+      }
+  elseif ($_GET['module']=='data_pegawai'){
+         echo '
+              <li role="presentation" class="space-top"><a href="pegawai.php?module=beranda">Home</a></li>
+              <li role="presentation"><a href="?module=data_lapang">Data Lapang</a></li>
+              <li role="presentation"><a href="?module=data_member">Data Member</a></li>
+              <li role="presentation"><a href="?module=data_pembayaran">Data Pembayaran</a></li>
+              <li role="presentation"><a href="?module=data_pemesanan">Data Pemesanan</a></li>
+              <li role="presentation" class="active"><a href="?module=data_pegawai">Data Pegawai</a></li>
              
           ';
       }

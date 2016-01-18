@@ -5,6 +5,7 @@
 
 
     $date                 = $_POST["tanggal"];
+    $jam                  = date('h:i:s');
     $nama_pemesan         = $_POST["nama_pemesan"];
     $status_pemesan       = 'non-member';
     $id_lapang            = $_POST["lapang"];
@@ -13,6 +14,7 @@
     $status               = 'menunggu Konfirmasi';
     $alamat               = $_POST["alamat"];
     $no_telp              = $_POST["no_telp"];
+      $email              = $_POST["email"];
 
     $waktu_awal        = $_POST["waktu_awal"];
     $waktu_akhir        = $_POST["waktu_akhir"];
@@ -30,9 +32,9 @@
     }
     $tanggal_skr = date('Y-m-d h:i:s');
 
-    echo "$date $status_pemesan $id_lapang $id_waktu $tarif $status";
+    //echo "$date $status_pemesan $id_lapang $id_waktu $tarif $status";
     //die();
-    $sql2    = "INSERT INTO pelanggan values ('','$nama_pemesan','$alamat','$no_telp','')";
+    $sql2    = "INSERT INTO pelanggan values ('','$nama_pemesan','$alamat','$no_telp','$email')";
     $kueri2 = mysql_query($sql2);
 
     $id_pelanggan  = mysql_insert_id();
@@ -41,10 +43,10 @@
     $sql3    = "INSERT INTO non_member values ('$id_pelanggan','$id_non_member')";
     $kueri2 = mysql_query($sql3);
 
-    $sql    = "INSERT INTO pemesanan values ('','$date','sssss','$id_lapang','$id_waktu','$tarif','tidak dikonfirmasi','$id_pelanggan')";
+    $sql    = "INSERT INTO pemesanan values ('','$date','$jam','non-member','$id_lapang','$id_waktu','$tarif','Belum Konfirmasi','$id_pelanggan')";
     $kueri = mysql_query($sql);
 
-    //$_SESSION['nama_pemesan'] = $nama_pemesan;
+    $_SESSION['nama_pemesan'] = $nama_pemesan;
 
 ?>
 

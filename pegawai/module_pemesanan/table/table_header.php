@@ -7,6 +7,7 @@ tampil,cari dan cetak excel.
 	  <th width="10px">No</th>
 	  <th class="tab-col">Kode Pesan</th>
 			          <th>Tanggal Pesan</th>
+			          <th>Jam Pesan</th>
 			          <th>Status Pemesan</th>
 			          <th class="tab-col">Id Lapang</th>
 			          <th class="tab-col">Id Waktu</th>

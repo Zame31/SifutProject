@@ -8,7 +8,7 @@
         <div class="modal-header">
           <p><i class="fa fa-user-plus"></i> Tambah</p>
         </div>
-        
+          <div class="modal-body">
             <div class="form-group" >
               <label for="admin-name" class="col-lg-4 control-label"> Kode Pesan </label>
               <div class="col-lg-8">
@@ -24,24 +24,21 @@
              <div class="form-group">
               <label for="admin-name" class="col-lg-4 control-label"> Tanggal Transfer : </label>
               <div class="col-lg-8">
-                <input type="date" class="form-control" name="tanggal_transfer">
+                <input type="date" class="form-control" name="tanggal_transfer" required>
               </div>
             </div>
              <div class="form-group">
               <label for="admin-name" class="col-lg-4 control-label"> Bank : </label>
               <div class="col-lg-8">
-                <input id="telepon" type="text" class="form-control" name="bank" placeholder="bank">
-                
-              </div>
+                <input type="text" class="form-control" name="bank" placeholder="Bank" required>
+                </div>
             </div>
              <div class="form-group">
               <label for="admin-name" class="col-lg-4 control-label"> Nominal </label>
               <div class="col-lg-8">
-                <input type="text" class="form-control" name="nominal" placeholder="Nominal">
+                <input type="text" class="form-control" name="nominal" placeholder="Nominal" required>
               </div>
             </div>
-             
-
         </div>
         <div class="modal-footer">
           <button class="button-foot" data-dismiss= "modal">Close</button>

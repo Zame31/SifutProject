@@ -1,11 +1,11 @@
 <?php
-function UploadImage($banner_name){
+function UploadImage($bukti_name){
   //direktori gambar
-  $vdir_upload = "../pic/pic_barang/";
-  $vfile_upload = $vdir_upload . $banner_name;
+  $vdir_upload = "bukti/";
+  $vfile_upload = $vdir_upload . $bukti_name;
 
   //Simpan gambar dalam ukuran sebenarnya
-  move_uploaded_file($_FILES["gambar"]["tmp_name"], $vfile_upload);
+  move_uploaded_file($_FILES["bukti"]["tmp_name"], $vfile_upload);
 
   //identitas file asli
   $im_src = imagecreatefromjpeg($vfile_upload);
@@ -22,7 +22,7 @@ function UploadImage($banner_name){
   imagecopyresampled($im, $im_src, 0, 0, 0, 0, $dst_width, $dst_height, $src_width, $src_height);
 
   //Simpan gambar
-  imagejpeg($im,$vdir_upload . "small_" . $banner_name);
+  imagejpeg($im,$vdir_upload . "small_" . $bukti_name);
 
 
   //Simpan dalam versi medium 360 pixel
@@ -35,7 +35,7 @@ function UploadImage($banner_name){
   imagecopyresampled($im2, $im_src, 0, 0, 0, 0, $dst_width2, $dst_height2, $src_width, $src_height);
 
   //Simpan gambar
-  imagejpeg($im2,$vdir_upload . "medium_" . $banner_name);
+  imagejpeg($im2,$vdir_upload . "medium_" . $bukti_name);
 
   //Hapus gambar di memori komputer
   imagedestroy($im_src);

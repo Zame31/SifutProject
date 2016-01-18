@@ -65,6 +65,7 @@ echo '
           <th>No</th>
                 <th>Kode Pesan</th>
                 <th>Tanggal Pesan</th>
+                <th>Jam Pesan</th>
                 <th>Status Pemesan</th>
                 <th>Id pemesanan</th>
                 <th>Id Waktu</th>
@@ -83,6 +84,7 @@ echo '
        echo "<tr><td>$no</td>
              <td class='tab-col'>$tampil[kode_pesan]</td>
                <td>$tampil[tanggal_pesan]</td>
+               <td>$tampil[jam_pesan]</td>
                <td>$tampil[status_pemesan]</td>
                <td>$tampil[id_pemesanan]</td>
                <td>$tampil[id_waktu]</td>

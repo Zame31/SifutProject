@@ -10,40 +10,38 @@ $act=$_GET['act'];
 //UPDATE member
 if ($module=='data_member' AND $act=='update_member'){
   if (empty($_POST[password])) {
-    mysql_query("UPDATE member SET username      = '$_POST[username]',
-                                  id_pelanggan   = '$_POST[id_pelanggan]',
+
+    mysql_query("UPDATE pelanggan SET    
+                                  nama         = '$_POST[nama]',
+                                  alamat       = '$_POST[alamat]',
+                                  no_telp      = '$_POST[no_telp]',
+                                  email        = '$_POST[email]'                  
+                           WHERE  id_pelanggan = '$_POST[id2]'");
+
+    mysql_query(" UPDATE member SET username      = '$_POST[username]',                                
                                   aktif          = '$_POST[aktif]',
                                   tanggal_daftar = '$_POST[tanggal_daftar]',
                                   langganan      = '$_POST[langganan]',
                                   kuota_main     = '$_POST[kuota_main]'                  
-                           WHERE  id_member      = '$_POST[id]'");
-
-   mysql_query("UPDATE pelanggan SET 
-                                  
-                                  nama         = '$_POST[nama]',
-                                  alamat       = '$_POST[alamat]',
-                                  no_telp      = '$_POST[no_telp]',
-                                  email        = '$_POST[email]'                  
-                           WHERE  id_pelanggan = '$_POST[id]'");
+                           WHERE  id_member      = '$_POST[id]'");   
   }
   // Apabila password diubah
   else{
     $pass=md5($_POST[password]);
-    mysql_query("UPDATE member SET username       = '$_POST[username]',
-                                  password        = '$pass',
-                                  id_pelanggan    = '$_POST[id_pelanggan]',
-                                  aktif           = '$_POST[aktif]',
-                                  tanggal_daftar  = '$_POST[tanggal_daftar]',
-                                  langganan       = '$_POST[langganan]',
-                                  kuota_main      = '$_POST[kuota_main]'
-                           WHERE id_member        = '$_POST[id]'");
-   mysql_query("UPDATE pelanggan SET 
-                                  
+   mysql_query("UPDATE pelanggan SET    
                                   nama         = '$_POST[nama]',
                                   alamat       = '$_POST[alamat]',
                                   no_telp      = '$_POST[no_telp]',
                                   email        = '$_POST[email]'                  
-                           WHERE  id_pelanggan = '$_POST[id]'");
+                           WHERE  id_pelanggan = '$_POST[id2]'");
+
+    mysql_query(" UPDATE member SET username      = '$_POST[username]',
+                                    password     =  '$pass',                               
+                                  aktif          = '$_POST[aktif]',
+                                  tanggal_daftar = '$_POST[tanggal_daftar]',
+                                  langganan      = '$_POST[langganan]',
+                                  kuota_main     = '$_POST[kuota_main]'                  
+                           WHERE  id_member      = '$_POST[id]'");   
   }
   header('location:../pegawai.php?module='.$module);
 }

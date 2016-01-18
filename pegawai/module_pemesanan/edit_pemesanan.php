@@ -1,5 +1,15 @@
-
 <?php
+  $tampilkan = mysql_query("SELECT id_lapang,nama FROM lapang ORDER BY id_lapang");
+
+
+  $tampilkan2 = mysql_query("SELECT id_waktu,waktu_awal,waktu_akhir FROM waktu ORDER BY id_waktu");
+
+
+  $tampilkan3 = mysql_query("SELECT id_pelanggan,nama FROM pelanggan ORDER BY id_pelanggan");
+
+
+  $tampilkan4 = mysql_query("SELECT id_tarif,harga FROM tarif ORDER BY id_tarif");
+
 
 $edit=mysql_query("SELECT * FROM pemesanan WHERE kode_pesan='$_GET[id]'");
     $ed=mysql_fetch_array($edit);
@@ -23,6 +33,12 @@ $edit=mysql_query("SELECT * FROM pemesanan WHERE kode_pesan='$_GET[id]'");
               <input type='text' class='form-control' name='tanggal_pesan' value='$ed[tanggal_pesan]'>
             </div>
           </div>
+           <div class='form-group'>
+            <label class='col-lg-2 control-label'> Jam Pesan</label>
+            <div class='col-lg-10'>
+              <input type='time' class='form-control' name='jam_pesan' value='$ed[jam_pesan]'>
+            </div>
+          </div>
           <div class='form-group'>
             <label for='admin-usr' class='col-lg-2 control-label'> Status Pemesan</label>
             <div class='col-lg-10'>
@@ -32,13 +48,25 @@ $edit=mysql_query("SELECT * FROM pemesanan WHERE kode_pesan='$_GET[id]'");
           <div class='form-group'>
             <label for='admin-usr' class='col-lg-2 control-label'> Id Lapang</label>
             <div class='col-lg-10'>
-              <input type='text' class='form-control' name='id_lapang' value='$ed[id_lapang]' disabled>
+               <select class='form-control select-style' name='id_lapang' required>";
+                  
+                    while ($tampil=mysql_fetch_array($tampilkan)){
+                    echo "<option value='$tampil[id_lapang]'>$tampil[id_lapang] ($tampil[nama])  </option>";
+                  }
+                  echo "
+                </select>
             </div>
           </div>
           <div class='form-group'>
             <label for='admin-usr' class='col-lg-2 control-label'> Id Waktu</label>
             <div class='col-lg-10'>
-              <input type='text' class='form-control' name='id_waktu' value='$ed[id_waktu]' disabled>
+              <select class='form-control select-style' name='id_waktu' required>";
+                  
+                    while ($tampil=mysql_fetch_array($tampilkan2)){
+                    echo "<option value='$tampil[id_waktu]'>$tampil[id_waktu] ($tampil[waktu_awal] - $tampil[waktu_akhir] )  </option>";
+                  }
+                  echo "
+                </select>
             </div>
           </div>
           <div class='form-group'>
@@ -56,7 +84,7 @@ $edit=mysql_query("SELECT * FROM pemesanan WHERE kode_pesan='$_GET[id]'");
           <div class='form-group'>
             <label for='admin-usr' class='col-lg-2 control-label'> Id Pelanggan</label>
             <div class='col-lg-10'>
-              <input type='text' class='form-control' name='id_pelanggan' value='$ed[id_pelanggan]' disabled>
+              <input type='text' class='form-control' name='id_pelanggan' value='$ed[id_pelanggan]'>
             </div>
           </div>
 

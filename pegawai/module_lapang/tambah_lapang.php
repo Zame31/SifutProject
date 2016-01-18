@@ -9,13 +9,13 @@
             <div class="form-group">
               <label for="admin-usr" class="col-lg-4 control-label"> ID Lapangan : </label>
               <div class="col-lg-8">
-                <input type="text" class="form-control" name="id_lapang" placeholder="id_lapang">
+                <input type="text" class="form-control" name="id_lapang" placeholder="ID Lapang" required>
               </div>
             </div>
             <div class="form-group">
               <label for="admin-name" class="col-lg-4 control-label">Nama lapang : </label>
               <div class="col-lg-8">
-                <input type="text" class="form-control" name="nama" placeholder="Nama lapang">
+                <input type="text" class="form-control" name="nama" placeholder="Nama Lapang" required>
               </div>
             </div>
              <div class="form-group">
@@ -29,7 +29,7 @@
                 </label>
               </div>
             </div>
-             
+
 
         </div>
         <div class="modal-footer">

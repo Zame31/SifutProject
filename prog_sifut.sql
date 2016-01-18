@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.14
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 30, 2015 at 04:52 AM
--- Server version: 5.6.26
--- PHP Version: 5.6.12
+-- Generation Time: Jan 19, 2016 at 12:53 AM
+-- Server version: 10.1.8-MariaDB
+-- PHP Version: 5.6.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,10 +23,31 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `konfirmasi_voucher`
+--
+
+CREATE TABLE `konfirmasi_voucher` (
+  `id_konfirmasi` int(11) NOT NULL,
+  `kode_voucher` char(7) NOT NULL,
+  `tanggal_transfer` date NOT NULL,
+  `bank` varchar(12) NOT NULL,
+  `nominal` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `konfirmasi_voucher`
+--
+
+INSERT INTO `konfirmasi_voucher` (`id_konfirmasi`, `kode_voucher`, `tanggal_transfer`, `bank`, `nominal`) VALUES
+(3, '%Ye4Mdb', '2016-01-20', 'BNI', 200000);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `lapang`
 --
 
-CREATE TABLE IF NOT EXISTS `lapang` (
+CREATE TABLE `lapang` (
   `id_lapang` char(8) NOT NULL,
   `nama` varchar(30) NOT NULL,
   `aktif` enum('Y','T') NOT NULL
@@ -38,7 +59,8 @@ CREATE TABLE IF NOT EXISTS `lapang` (
 
 INSERT INTO `lapang` (`id_lapang`, `nama`, `aktif`) VALUES
 ('LP01', 'Lapang Sintetis 1', 'Y'),
-('LP02', 'Lapang Sintetis 2', 'Y');
+('LP02', 'Lapang Sintetis 2', 'Y'),
+('LP03', 'Lapang Sintetis 3', 'Y');
 
 -- --------------------------------------------------------
 
@@ -46,7 +68,7 @@ INSERT INTO `lapang` (`id_lapang`, `nama`, `aktif`) VALUES
 -- Table structure for table `member`
 --
 
-CREATE TABLE IF NOT EXISTS `member` (
+CREATE TABLE `member` (
   `id_pelanggan` int(11) NOT NULL,
   `id_member` varchar(10) NOT NULL,
   `username` varchar(30) NOT NULL,
@@ -62,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `member` (
 --
 
 INSERT INTO `member` (`id_pelanggan`, `id_member`, `username`, `password`, `aktif`, `tanggal_daftar`, `langganan`, `kuota_main`) VALUES
-(6, 'M6', 'Fulan', 'c20ad4d76fe97759aa27a0c99bff6710', 'Y', '2015-12-26 01:39:23', '0000-00-00', 2);
+(78, 'M78', 'nurzaman', 'a2f19e07befa05afc11aba30953f7c25', 'Y', '2016-01-19 06:47:34', '2016-02-20', 1);
 
 -- --------------------------------------------------------
 
@@ -70,7 +92,7 @@ INSERT INTO `member` (`id_pelanggan`, `id_member`, `username`, `password`, `akti
 -- Table structure for table `non_member`
 --
 
-CREATE TABLE IF NOT EXISTS `non_member` (
+CREATE TABLE `non_member` (
   `id_pelanggan` int(11) NOT NULL,
   `id_non_member` varchar(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -80,11 +102,36 @@ CREATE TABLE IF NOT EXISTS `non_member` (
 --
 
 INSERT INTO `non_member` (`id_pelanggan`, `id_non_member`) VALUES
-(7, 'NM7'),
-(8, 'NM8'),
-(9, 'NM9'),
-(10, 'NM10'),
-(11, 'NM11');
+(72, 'NM72'),
+(73, 'NM73'),
+(74, 'NM74'),
+(75, 'NM75'),
+(76, 'NM76'),
+(77, 'NM77');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pegawai`
+--
+
+CREATE TABLE `pegawai` (
+  `username` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `nama_lengkap` varchar(50) NOT NULL,
+  `alamat` varchar(100) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `telp` varchar(20) NOT NULL,
+  `blokir` enum('Y','N') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pegawai`
+--
+
+INSERT INTO `pegawai` (`username`, `password`, `nama_lengkap`, `alamat`, `email`, `telp`, `blokir`) VALUES
+('fuad', 'd0b0caa56fee5e734ca286516b5885dc', 'fuad al farih', 'sekeloa timur', 'fuad@gmail.com', '088899898', 'N'),
+('zamzam', 'd0db05aabb991942a64e1b599ce379f9', 'Zamzam Nurzaman', 'sekeloa', 'nurzaman@gmail.com', '085720760068', 'N');
 
 -- --------------------------------------------------------
 
@@ -92,25 +139,49 @@ INSERT INTO `non_member` (`id_pelanggan`, `id_non_member`) VALUES
 -- Table structure for table `pelanggan`
 --
 
-CREATE TABLE IF NOT EXISTS `pelanggan` (
+CREATE TABLE `pelanggan` (
   `id_pelanggan` int(11) NOT NULL,
   `nama` varchar(50) NOT NULL,
   `alamat` varchar(100) NOT NULL,
   `no_telp` varchar(12) NOT NULL,
-  `email` varchar(50) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+  `email` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pelanggan`
 --
 
 INSERT INTO `pelanggan` (`id_pelanggan`, `nama`, `alamat`, `no_telp`, `email`) VALUES
-(6, 'Zamzam Nurzaman', 'Jl.Cigadung Raya Timur Rt/rw 02/14 bandung', '085720760068', 'znurzamanz@gmail.com'),
-(7, 'a', 'a', 'a', ''),
-(8, 'd', 'd', 'd', ''),
-(9, 'd', 'd', 'd', ''),
-(10, 'rrr', 'r', 'r', ''),
-(11, 'g', 'g', 'g', '');
+(72, 'Zamzam', 'Sekeloa Mang', '085720760068', 'nurzaman@gmail.com'),
+(73, 'Fuad Al', 'sekeloa', '082700020003', 'FuadAl@gmail.com'),
+(74, 'zamzam', 'sekelo', '085720750058', 'nurzaman@gmail.com'),
+(75, 'zamzam', 'sekelo', '085720750058', 'nurzaman@gmail.com'),
+(76, 'zamzam', 'sekelo', '085720750058', 'nurzaman@gmail.com'),
+(77, 'zamzam', 'sekelo', '085720750058', 'nurzaman@gmail.com'),
+(78, 'nurzaman', 'sekeloa selatan', '085720020000', 'znurzamanz@gmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pembayaran`
+--
+
+CREATE TABLE `pembayaran` (
+  `id_pembayaran` int(11) NOT NULL,
+  `kode_pesan` int(11) NOT NULL,
+  `tanggal_transfer` date NOT NULL,
+  `bank` varchar(30) NOT NULL,
+  `nominal` int(11) NOT NULL,
+  `bukti` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pembayaran`
+--
+
+INSERT INTO `pembayaran` (`id_pembayaran`, `kode_pesan`, `tanggal_transfer`, `bank`, `nominal`, `bukti`) VALUES
+(7, 93, '2016-01-21', 'BNI', 150000, '1.jpg'),
+(8, 89, '2016-01-21', 'BNI', 150000, '6.jpg');
 
 -- --------------------------------------------------------
 
@@ -118,27 +189,28 @@ INSERT INTO `pelanggan` (`id_pelanggan`, `nama`, `alamat`, `no_telp`, `email`) V
 -- Table structure for table `pemesanan`
 --
 
-CREATE TABLE IF NOT EXISTS `pemesanan` (
+CREATE TABLE `pemesanan` (
   `kode_pesan` int(11) NOT NULL,
   `tanggal_pesan` date NOT NULL,
+  `jam_pesan` time NOT NULL,
   `status_pemesan` varchar(30) NOT NULL,
   `id_lapang` char(8) NOT NULL,
   `id_waktu` char(8) NOT NULL,
   `tarif` int(11) NOT NULL,
   `status` varchar(20) NOT NULL,
   `id_pelanggan` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pemesanan`
 --
 
-INSERT INTO `pemesanan` (`kode_pesan`, `tanggal_pesan`, `status_pemesan`, `id_lapang`, `id_waktu`, `tarif`, `status`, `id_pelanggan`) VALUES
-(7, '2015-12-26', 'sss', 'LP01', 'J01', 130000, 'www', 6),
-(8, '2015-12-26', 'sssss', 'LP01', 'J02', 150000, 'tidak dikonfirmasi', 9),
-(9, '2015-12-26', 'sssss', 'LP02', 'J03', 150000, 'tidak dikonfirmasi', 10),
-(10, '2015-12-26', 'sssss', 'LP02', 'J05', 150000, 'tidak dikonfirmasi', 11),
-(19, '2015-12-26', 'member', 'LP02', 'J01', 150000, 'menunggu Konfirmasi', 6);
+INSERT INTO `pemesanan` (`kode_pesan`, `tanggal_pesan`, `jam_pesan`, `status_pemesan`, `id_lapang`, `id_waktu`, `tarif`, `status`, `id_pelanggan`) VALUES
+(89, '2016-01-19', '06:14:52', 'non-member', 'LP01', 'J03', 130000, 'Sudah konfirmasi', 73),
+(90, '2016-01-19', '06:22:23', 'non-member', 'LP02', 'J04', 130000, 'Belum Konfirmasi', 74),
+(91, '2016-01-19', '06:22:37', 'non-member', 'LP02', 'J05', 130000, 'Belum Konfirmasi', 75),
+(92, '2016-01-21', '06:22:54', 'non-member', 'LP01', 'J03', 130000, 'Belum Konfirmasi', 76),
+(93, '2016-01-21', '06:23:13', 'non-member', 'LP01', 'J14', 150000, 'Sudah konfirmasi', 77);
 
 -- --------------------------------------------------------
 
@@ -146,7 +218,7 @@ INSERT INTO `pemesanan` (`kode_pesan`, `tanggal_pesan`, `status_pemesan`, `id_la
 -- Table structure for table `tarif`
 --
 
-CREATE TABLE IF NOT EXISTS `tarif` (
+CREATE TABLE `tarif` (
   `id_tarif` char(8) NOT NULL,
   `harga` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -166,7 +238,7 @@ INSERT INTO `tarif` (`id_tarif`, `harga`) VALUES
 -- Table structure for table `voucher`
 --
 
-CREATE TABLE IF NOT EXISTS `voucher` (
+CREATE TABLE `voucher` (
   `kode_voucher` char(7) NOT NULL,
   `id_member` varchar(10) NOT NULL,
   `jenis_voucher` varchar(9) NOT NULL,
@@ -179,7 +251,7 @@ CREATE TABLE IF NOT EXISTS `voucher` (
 --
 
 INSERT INTO `voucher` (`kode_voucher`, `id_member`, `jenis_voucher`, `tarif`, `tanggal`) VALUES
-('9Lmuezn', 'M6', 'bulanan', 200000, '2015-12-30 10:45:22');
+('%Ye4Mdb', 'M78', 'bulanan', 200000, '2016-01-19 06:50:36');
 
 -- --------------------------------------------------------
 
@@ -187,7 +259,7 @@ INSERT INTO `voucher` (`kode_voucher`, `id_member`, `jenis_voucher`, `tarif`, `t
 -- Table structure for table `waktu`
 --
 
-CREATE TABLE IF NOT EXISTS `waktu` (
+CREATE TABLE `waktu` (
   `id_waktu` char(8) NOT NULL,
   `waktu_awal` time NOT NULL,
   `waktu_akhir` time NOT NULL
@@ -219,7 +291,7 @@ INSERT INTO `waktu` (`id_waktu`, `waktu_awal`, `waktu_akhir`) VALUES
 -- Table structure for table `waktu_lapang`
 --
 
-CREATE TABLE IF NOT EXISTS `waktu_lapang` (
+CREATE TABLE `waktu_lapang` (
   `id_lapang` char(8) NOT NULL,
   `id_waktu` char(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -242,7 +314,7 @@ INSERT INTO `waktu_lapang` (`id_lapang`, `id_waktu`) VALUES
 -- Table structure for table `waktu_tarif`
 --
 
-CREATE TABLE IF NOT EXISTS `waktu_tarif` (
+CREATE TABLE `waktu_tarif` (
   `id_waktu` char(8) NOT NULL,
   `id_tarif` char(8) NOT NULL,
   `status` enum('normal','weekend') NOT NULL
@@ -287,6 +359,13 @@ INSERT INTO `waktu_tarif` (`id_waktu`, `id_tarif`, `status`) VALUES
 --
 
 --
+-- Indexes for table `konfirmasi_voucher`
+--
+ALTER TABLE `konfirmasi_voucher`
+  ADD PRIMARY KEY (`id_konfirmasi`),
+  ADD KEY `kode_voucher` (`kode_voucher`);
+
+--
 -- Indexes for table `lapang`
 --
 ALTER TABLE `lapang`
@@ -306,10 +385,23 @@ ALTER TABLE `non_member`
   ADD KEY `id_pelanggan` (`id_pelanggan`);
 
 --
+-- Indexes for table `pegawai`
+--
+ALTER TABLE `pegawai`
+  ADD PRIMARY KEY (`username`);
+
+--
 -- Indexes for table `pelanggan`
 --
 ALTER TABLE `pelanggan`
   ADD PRIMARY KEY (`id_pelanggan`);
+
+--
+-- Indexes for table `pembayaran`
+--
+ALTER TABLE `pembayaran`
+  ADD PRIMARY KEY (`id_pembayaran`),
+  ADD KEY `kode_pesan` (`kode_pesan`);
 
 --
 -- Indexes for table `pemesanan`
@@ -358,18 +450,34 @@ ALTER TABLE `waktu_tarif`
 --
 
 --
+-- AUTO_INCREMENT for table `konfirmasi_voucher`
+--
+ALTER TABLE `konfirmasi_voucher`
+  MODIFY `id_konfirmasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
 -- AUTO_INCREMENT for table `pelanggan`
 --
 ALTER TABLE `pelanggan`
-  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+--
+-- AUTO_INCREMENT for table `pembayaran`
+--
+ALTER TABLE `pembayaran`
+  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `pemesanan`
 --
 ALTER TABLE `pemesanan`
-  MODIFY `kode_pesan` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
+  MODIFY `kode_pesan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `konfirmasi_voucher`
+--
+ALTER TABLE `konfirmasi_voucher`
+  ADD CONSTRAINT `konfirmasi_voucher_ibfk_1` FOREIGN KEY (`kode_voucher`) REFERENCES `voucher` (`kode_voucher`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `member`
@@ -382,6 +490,12 @@ ALTER TABLE `member`
 --
 ALTER TABLE `non_member`
   ADD CONSTRAINT `non_member_ibfk_1` FOREIGN KEY (`id_pelanggan`) REFERENCES `pelanggan` (`id_pelanggan`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `pembayaran`
+--
+ALTER TABLE `pembayaran`
+  ADD CONSTRAINT `pembayaran_ibfk_1` FOREIGN KEY (`kode_pesan`) REFERENCES `pemesanan` (`kode_pesan`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `pemesanan`

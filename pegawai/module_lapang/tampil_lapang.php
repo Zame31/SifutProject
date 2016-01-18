@@ -2,7 +2,7 @@
 	$tampil_admin = mysql_query("SELECT * FROM lapang ORDER BY id_lapang");
 ?>
     <div class="title-content">
-    <span>Management</span>
+    <span>Pengelolaan</span>
     data Lapangan
   </div>
   <div class="content">
@@ -33,7 +33,7 @@
         </tr>
       </thead>
       <tbody>
-<?php        
+<?php
     $no=1;
     while ($tampil=mysql_fetch_array($tampil_admin)){
        include "table/table_body.php";

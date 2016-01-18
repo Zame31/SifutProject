@@ -1,12 +1,19 @@
 <?php
 
-$edit=mysql_query("SELECT * FROM member WHERE id_member='$_GET[id]'");
-    $ed=mysql_fetch_array($edit);
-?>
-<?php
+//$edit=mysql_query("SELECT * FROM member WHERE id_member='$_GET[id]'");
+//    $ed=mysql_fetch_array($edit);
 
-$edit2=mysql_query("SELECT * FROM pelanggan WHERE id_pelanggan='$_GET[id]'");
-    $ed2=mysql_fetch_array($edit2);
+$edit=mysql_query("SELECT member.id_pelanggan,member.id_member,
+                           pelanggan.nama,pelanggan.alamat,pelanggan.no_telp,pelanggan.email,
+                           member.username,member.password,member.tanggal_daftar,member.langganan,
+                           member.kuota_main,member.aktif  
+                    FROM member,pelanggan 
+                    where member.id_pelanggan=pelanggan.id_pelanggan and 
+                          member.id_member='$_GET[id]' 
+                    ORDER BY id_member");
+$ed=mysql_fetch_array($edit);
+
+  
 ?>
   <div class="content">
     <div class="edit-cont">
@@ -15,6 +22,7 @@ $edit2=mysql_query("SELECT * FROM pelanggan WHERE id_pelanggan='$_GET[id]'");
 <?php
      echo "<form class='form-horizontal' method=POST action=$action?module=data_member&act=update_member>
           <input type='hidden' name='id' value='$ed[id_member]'>
+          <input type='hidden' name='id2' value='$ed[id_pelanggan]'>
           <div class='form-group'>
             <label class='col-lg-2 control-label'> ID Pelanggan</label>
             <div class='col-lg-10'>
@@ -30,25 +38,25 @@ $edit2=mysql_query("SELECT * FROM pelanggan WHERE id_pelanggan='$_GET[id]'");
           <div class='form-group'>
             <label class='col-lg-2 control-label'> Nama</label>
             <div class='col-lg-10'>
-              <input type='text' class='form-control' name='nama' value='$ed2[nama]'>
+              <input type='text' class='form-control' name='nama' value='$ed[nama]'>
             </div>
           </div>
           <div class='form-group'>
             <label class='col-lg-2 control-label'> Alamat</label>
             <div class='col-lg-10'>
-              <input type='text' class='form-control' name='alamat' value='$ed2[alamat]'>
+              <input type='text' class='form-control' name='alamat' value='$ed[alamat]'>
             </div>
           </div>
           <div class='form-group'>
             <label class='col-lg-2 control-label'> No Telepon</label>
             <div class='col-lg-10'>
-              <input type='text' class='form-control' name='no_telp' value='$ed2[no_telp]'>
+              <input type='text' class='form-control' name='no_telp' value='$ed[no_telp]'>
             </div>
           </div>
           <div class='form-group'>
             <label class='col-lg-2 control-label'> Email</label>
             <div class='col-lg-10'>
-              <input type='text' class='form-control' name='email' value='$ed2[email]'>
+              <input type='text' class='form-control' name='email' value='$ed[email]'>
             </div>
           </div>
           <div class='form-group'>
@@ -66,13 +74,13 @@ $edit2=mysql_query("SELECT * FROM pelanggan WHERE id_pelanggan='$_GET[id]'");
           <div class='form-group'>
             <label class='col-lg-2 control-label'> Tanggal Daftar</label>
             <div class='col-lg-10'>
-              <input type='text' class='form-control' name='tanggal_daftar' value='$ed[tanggal_daftar]'>
+              <input type='date' class='form-control' name='tanggal_daftar' value='$ed[tanggal_daftar]'>
             </div>
           </div>
           <div class='form-group'>
             <label class='col-lg-2 control-label'>Langganan</label>
             <div class='col-lg-10'>
-              <input type='text' class='form-control' name='langganan' value='$ed[langganan]'>
+              <input type='date' class='form-control' name='langganan' value='$ed[langganan]'>
             </div>
           </div>
           <div class='form-group'>
@@ -114,5 +122,5 @@ $edit2=mysql_query("SELECT * FROM pelanggan WHERE id_pelanggan='$_GET[id]'");
           </form>
           ';
 
-
+  
 ?>
