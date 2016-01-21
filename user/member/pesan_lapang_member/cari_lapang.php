@@ -2,7 +2,7 @@
 session_start();
 $myuser = $_SESSION['username'];
 $mypass = $_SESSION['password'];
-$mykode = $_SESSION['kode'];
+  $myid = $_SESSION['id_pelanggan'];
   include "../../../main/connection.php";
 
   $cari       = $_POST["cari"];
@@ -51,10 +51,13 @@ if ($dayList[$day]== 'Jumat' or $dayList[$day]== 'Sabtu' or $dayList[$day]== 'Mi
                                     ON waktu_tarif.id_tarif = tarif.id_tarif
                                     GROUP by waktu_awal
                                   ");
-                                  $tampilkan_member = mysql_query("SELECT username,alamat,telepon
-                                                                   FROM member
-                                                                   WHERE username = '$myuser'");
+                                  $tampilkan_member = mysql_query("SELECT username,alamat,no_telp
+                                                                   FROM member,pelanggan
+                                                                   WHERE username = '$myuser' AND pelanggan.id_pelanggan=member.id_pelanggan");
 
+ $view_limit = mysql_query("select kuota_main from member WHERE id_pelanggan='$myid'");
+ $limit = mysql_fetch_array($view_limit);
+ $count_limit = 8 - $limit['kuota_main'];
 ?>
 
 <!DOCTYPE html>
@@ -76,10 +79,7 @@ if ($dayList[$day]== 'Jumat' or $dayList[$day]== 'Sabtu' or $dayList[$day]== 'Mi
 
     <!-- Custom Fonts -->
     <link href="../../../assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+    <link href="../../../assets/fonts/myfonts.css" rel="stylesheet" type="text/css">
 
     <script src="../../../assets/js/jquery.min.js"></script>
     <script src="../../../assets/js/bootstrap.min.js"></script>
@@ -96,7 +96,7 @@ if ($dayList[$day]== 'Jumat' or $dayList[$day]== 'Sabtu' or $dayList[$day]== 'Mi
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="../../index.php">Sifut  </a>
+                <a class="navbar-brand page-scroll" href="../member.php">Sifut  </a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -164,7 +164,7 @@ if ($dayList[$day]== 'Jumat' or $dayList[$day]== 'Sabtu' or $dayList[$day]== 'Mi
                 $tgl = date('Y-m-d');
                 while ($tampil_member=mysql_fetch_array($tampilkan_member)){
                   $myalamat = $tampil_member['alamat'];
-                  $mytelepon = $tampil_member['telepon'];
+                  $mytelepon = $tampil_member['no_telp'];
                 }
 
 
@@ -231,6 +231,7 @@ if ($dayList[$day]== 'Jumat' or $dayList[$day]== 'Sabtu' or $dayList[$day]== 'Mi
                                   <input type='hidden' name='nama_pemesan' value='$myuser'>
                                   <input type='hidden' name='alamat' value='$myalamat'>
                                   <input type='hidden' name='no_telp' value='$mytelepon'>
+                                  <input type='hidden' name='id_pelanggan' value='$myid'>
 
                                   <div class='form-group'>
                                     <div class='col-lg-12'>
@@ -260,6 +261,12 @@ if ($dayList[$day]== 'Jumat' or $dayList[$day]== 'Sabtu' or $dayList[$day]== 'Mi
                                       <input type='text' class='form-control form-color form-margin' name='nama_pemesan' value='$myuser' disabled>
                                     </div>
                                   </div>
+
+                                  <div class='form-group'>
+                                  <div class='col-lg-12'>
+                                    <input type='text' class='form-control form-color form-margin' name='nama_pemesan' value='Sisa main $count_limit Jam ' disabled>
+                                  </div>
+                                </div>
                                 </div>
 
                                 <div class='modal-footer footer-conf'>
@@ -288,6 +295,7 @@ if ($dayList[$day]== 'Jumat' or $dayList[$day]== 'Sabtu' or $dayList[$day]== 'Mi
                                   <input type='hidden' name='nama_pemesan' value='$myuser'>
                                   <input type='hidden' name='alamat' value='$myalamat'>
                                   <input type='hidden' name='no_telp' value='$mytelepon'>
+                                  <input type='hidden' name='id_pelanggan' value='$myid'>
 
                                   <div class='form-group'>
                                     <div class='col-lg-12'>
@@ -317,7 +325,11 @@ if ($dayList[$day]== 'Jumat' or $dayList[$day]== 'Sabtu' or $dayList[$day]== 'Mi
                                       <input type='text' class='form-control form-color form-margin' name='nama_pemesan' value='$myuser' disabled>
                                     </div>
                                   </div>
-
+                                  <div class='form-group'>
+                                  <div class='col-lg-12'>
+                                    <input type='text' class='form-control form-color form-margin' name='nama_pemesan' value='Sisa main $count_limit Jam ' disabled>
+                                  </div>
+                                </div>
                                 </div>
 
                                 <div class='modal-footer footer-conf'>

@@ -8,9 +8,18 @@ body{
 	font-size: 12px;
 	color: black;
 }
+.tab-col {
+	color: #19B17E;
+	font-size: 12px;
+	/* font-weight: bold; */
+}
 body#pegawai {
+    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /* font-weight: 900; */
     background: #f2f4f8;
-    font-family: 'Roboto', sans-serif;
+    /* font-family: "Roboto Slab", "Helvetica Neue", Helvetica, Arial, sans-serif; */
+    /* font-weight: 100; */
+    /* font-family: 'Roboto', sans-serif; */
     position: relative;
     font-size: 12px;
     color: black;
@@ -61,7 +70,7 @@ a:focus {
 	font-weight: bold;
 	/* margin-top: 20px; */
 	text-transform: uppercase;
-	font-family: 'Roboto Condensed', sans-serif;
+	font-family: "Kaushan Script", "Helvetica Neue", Helvetica, Arial, cursive;
 }
 .side-nav {
 	overflow-y: auto;
@@ -76,6 +85,7 @@ a:focus {
 	font-weight: 400;
 }
 .nav-pills>li>a {
+	font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 13px;
 	color: #808080;
 	border-radius: 4px;
@@ -130,10 +140,11 @@ a:focus {
 /*   CONTENT  	                     */
 /*---------------------------------------*/
 section {
-	margin-left: 170px;
-	padding: 30px 50px;
+	margin-left: 190px;
+	padding: 30px 10px;
 }
 .title-content {
+	font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
 	background: #FFF;
 	padding: 20px;
 	color: #19B17E;
@@ -212,11 +223,7 @@ section {
 		.tab-mar-top {
 			margin-top: 30px;
 		}
-		.tab-col {
-			color: #19B17E;
-			font-size: 52px;
-			/* font-weight: bold; */
-		}
+
 		.table>thead>tr>th {
 	    border-bottom: 2px solid #B1B1B1;
 	 }
@@ -228,6 +235,7 @@ section {
 			font-size: 12px;
 			border-top: 1px solid #C7C7C7;
 			padding: 3px;
+			/* color: #757575; */
 		}
 		.table>tbody>tr>td a.fa {
             width: 26px;
@@ -247,8 +255,10 @@ section {
 		.table>tfoot>tr>td, .table>tfoot>tr>th,
 		.table>thead>tr>td, .table>thead>tr>th {
 			font-size: 12px;
-    	font-weight: 500;
-	    border-top: 1px solid #CBD5F1;
+			font-weight: 500;
+			/* font-family: "Roboto Slab", "Helvetica Neue", Helvetica, Arial, sans-serif; */
+			font-weight: 600;
+			border-top: 1px solid #CBD5F1;
 		}
 		.table-hover>tbody>tr:hover {
 		  background-color: rgb(243, 243, 243);

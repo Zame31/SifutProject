@@ -12,12 +12,12 @@ echo "
 			         <td>$tampil[no_telp]</td>
 			         <td>$tampil[email]</td>
 			         <td>$tampil[username]</td>
-			         <td>$tampil[aktif]</td>
+			      
 			         <td>$tampil[tanggal_daftar]</td>
 			         <td>$tampil[langganan]</td>
 			         <td>$tampil[kuota_main]</td>
-			         
 
 
-     
+
+
 	 ";

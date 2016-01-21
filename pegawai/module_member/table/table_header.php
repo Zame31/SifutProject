@@ -12,10 +12,7 @@ tampil,cari dan cetak excel.
 			          <th>No Telp</th>
 			          <th>Email</th>
 			          <th>Username</th>
-			          <th>Aktif</th>
+
 			          <th>Tanggal Daftar</th>
 			          <th>Langganan</th>
 			          <th>Kuota Main</th>
-			          
-	 
- 

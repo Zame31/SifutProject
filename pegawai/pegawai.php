@@ -16,8 +16,7 @@ session_start();
   <link rel="stylesheet" href="../assets/css/style_pegawai.css">
   <link href="../assets/css/DT_bootstrap.css" rel="stylesheet" media="screen">
   <link rel="stylesheet" href="../assets/vendor/font-awesome/css/font-awesome.min.css">
-  <link href="http://fonts.googleapis.com/css?family=Roboto:400,300italic,300,100italic,100,400italic,500,500italic,700,900,900italic,700italic%7COswald:400,300,700" rel="stylesheet" type="text/css">
-  <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+  <link href="../assets/fonts/myfonts.css" rel="stylesheet" type="text/css">
   <script src="../assets/js/jquery.min.js"></script>
   <script src="../assets/js/bootstrap.min.js"></script>
   <script src="../assets/vendor/datatables/js/jquery.dataTables.min.js"></script>

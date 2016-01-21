@@ -83,10 +83,7 @@ $count_limit = 8 - $limit['kuota_main'];
 
     <!-- Custom Fonts -->
     <link href="../../../assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+      <link href="../../../assets/fonts/myfonts.css" rel="stylesheet" type="text/css">
 
     <script src="../../../assets/js/jquery.min.js"></script>
     <script src="../../../assets/js/bootstrap.min.js"></script>
@@ -104,7 +101,7 @@ $count_limit = 8 - $limit['kuota_main'];
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="../../index.php">Sifut  </a>
+                <a class="navbar-brand page-scroll" href="../member.php">Sifut  </a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->

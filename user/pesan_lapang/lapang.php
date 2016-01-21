@@ -73,10 +73,7 @@
 
     <!-- Custom Fonts -->
     <link href="../../assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+      <link href="../../assets/fonts/myfonts.css" rel="stylesheet" type="text/css">
 
     <script src="../../assets/js/jquery.min.js"></script>
     <script src="../../assets/js/bootstrap.min.js"></script>
@@ -161,9 +158,9 @@
                 while ($tampil2=mysql_fetch_array($tampil_batas_waktu)){
                   $sekarang = date('h:i:s', time() - 3600);
 
-                  echo "$sekarang ---- $tampil2[jam_pesan]-- $tampil2[tanggal_pesan] -- $tampil2[status] <br>";
+                  //echo "$sekarang ---- $tampil2[jam_pesan]-- $tampil2[tanggal_pesan] -- $tampil2[status] <br>";
 
-                  if ( $sekarang >= $tampil2['jam_pesan'] && $tampil2['status'] == 'Belum Konfirmasi') {
+                  if ( $tampil2['jam_pesan'] <= $sekarang && $tampil2['status'] == 'Belum Konfirmasi') {
                       mysql_query("DELETE FROM pemesanan WHERE jam_pesan <= '$sekarang' and status = 'Belum Konfirmasi'");
                   }
                 }

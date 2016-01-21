@@ -10,8 +10,7 @@
   <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="../../assets/css/style_user.css">
   <link rel="stylesheet" href="../../assets/vendor/font-awesome/css/font-awesome.min.css">
-  <link href="http://fonts.googleapis.com/css?family=Roboto:300,300italic,300,100italic,100,300italic,500,500italic,700,900,900italic,700italic%7COswald:300,300,700" rel="stylesheet" type="text/css">
-  <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,300,300italic,300italic,700,700italic' rel='stylesheet' type='text/css'>
+    <link href="../../assets/fonts/myfonts.css" rel="stylesheet" type="text/css">
   <script src="../../assets/js/jquery.min.js"></script>
   <script src="../../assets/js/bootstrap.min.js"></script>
 </head>
@@ -21,7 +20,7 @@
     include "../../main/connection.php";
      include "../../main/upload.php";
 
-   
+
     $kode_pesan           = $_POST["kode_pesan"];
     $tanggal              = $_POST["tanggal"];
     $bank                 = $_POST["bank"];
@@ -32,7 +31,7 @@
     $tipe_file      = $_FILES['bukti']['type'];
     $nama_file      = $_FILES['bukti']['name'];
     $direktori_file = "bukti/$nama_file";
-    $formatgambar = array("image/jpg", "image/jpeg"); 
+    $formatgambar = array("image/jpg", "image/jpeg");
     //validasi kode pesan
     $tampilkan_pesan = mysql_query(" select kode_pesan from pemesanan");
     while ($tampil_pesan=mysql_fetch_array($tampilkan_pesan)){
@@ -48,7 +47,7 @@
                <div class='tiket'>
                  <div class='tiket-title'>
                    <span> Konfirmasi Pembayaran Gagal, Format Gambar bukti Transfer tidak sesuai</span>
-                    
+
                    <span class='waktu'></span>
                  </div>
                  <div class='row tiket-body'>
@@ -62,8 +61,8 @@
     }
 
     elseif ($ada == "y") {
-    
-    UploadImage($nama_file);  
+
+    UploadImage($nama_file);
     $sql    = "INSERT INTO pembayaran values ('','$kode_pesan','$tanggal','$bank','$nominal','$nama_file')";
     $kueri = mysql_query($sql);
 
@@ -94,7 +93,7 @@
         $tahun = substr($date, 0, 4);
         $bulan = substr($date, 5, 2);
         $tgl   = substr($date, 8, 2);
-                   
+
         $tanggal_tran = $tgl . " " . $BulanIndo[(int)$bulan-1] . " ". $tahun;
    echo "
        <div class='container'>
@@ -137,7 +136,7 @@
                <div class='tiket'>
                  <div class='tiket-title'>
                    <span> Konfirmasi Pembayaran Gagal</span>
-                    
+
                    <span class='waktu'></span>
                  </div>
                  <div class='row tiket-body'>

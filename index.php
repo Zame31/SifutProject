@@ -18,10 +18,7 @@
 
     <!-- Custom Fonts -->
     <link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+    <link href="assets/fonts/myfonts.css" rel="stylesheet" type="text/css">
 
       <!-- jQuery -->
     <script src="assets/js/jquery.js"></script>
@@ -160,7 +157,7 @@
                     <div class="portfolio-caption">
                         <h4>Lapang Sintetis</h4>
                         <p class="text-muted">Tersedia 2 Lapang Sintetis</p>
-                        
+
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6 portfolio-item">
@@ -322,9 +319,9 @@
                             <p class="item-intro text-muted">Tersedia 2 Lapang Sintetis</p>
                             <img class="img-responsive img-centered" src="assets/img/8.jpg" alt="">
                             <p>Tubagus Futsal Club Memiliki 2 Lapangan Futsal yang berumput sitentis,
-                                dengan lampu penerangan yang baik. Sehingga kamu dapat bermain futsal dengan nyaman. 
+                                dengan lampu penerangan yang baik. Sehingga kamu dapat bermain futsal dengan nyaman.
                                 Lapangan sintetis berukuran 18M x 28M dengan lampu LED BRIDGELUX 500 watt yang tidak akan membuat pemain kepanasan.          <p>
-                              
+
                             <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Kembali</button>
                         </div>
                     </div>
@@ -351,7 +348,7 @@
                             <img class="img-responsive img-centered" src="assets/img/10.jpg" alt="">
                             <p>Tubagus Futsal Club Memiliki parkiran yang luas, dapat menampung mobil dan motor dengan leluasa dan aman
                             <p>
-                              
+
                             <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Kembali</button>
                         </div>
                     </div>
@@ -378,7 +375,7 @@
                             <img class="img-responsive img-centered" src="assets/img/9.jpg" alt="">
                             <p>Tubagus Futsal Club Memiliki mushola untuk pria dan wanita, memfasilitasi umat muslim untuk beribadah
                             <p>
-                              
+
                             <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Kembali</button>
                         </div>
                     </div>

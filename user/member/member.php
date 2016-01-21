@@ -22,10 +22,7 @@ include "../../main/connection.php"
 
     <!-- Custom Fonts -->
     <link href="../../assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+    <link href="../../assets/fonts/myfonts.css" rel="stylesheet" type="text/css">
 
       <!-- jQuery -->
     <script src="../../assets/js/jquery.js"></script>
@@ -90,7 +87,7 @@ include "../../main/connection.php"
                         <a href="pesan_lapang_member/lapang.php">Lapang</a>
                     </li>
                     <li>
-                        <a href="../../../index.php">Logout Member</a>
+                        <a href="../../index.php">Logout Member</a>
                     </li>
                 </ul>
             </div>
@@ -140,13 +137,13 @@ include "../../main/connection.php"
             <div class="row">
                 <div class="col-md-2">
                     <a href="pesan_lapang_member/lapang.php" class="f-fitur">
-                        <i class="fa fa-user"></i>
+                        <i class="fa fa-shopping-cart"></i>
                         <span class="title-fitur">Pesan Lapang</span>
                     </a>
                 </div>
                 <div class="col-md-2">
                     <a data-toggle="modal" href="#pembayaran" class="f-fitur">
-                        <i class="fa fa-user"></i>
+                        <i class="fa fa-money"></i>
                         <span class="title-fitur">Konfirmasi Pembayaran</span>
                     </a>
                 </div>
@@ -154,6 +151,12 @@ include "../../main/connection.php"
                     <a data-toggle="modal" href="#langganan" class="f-fitur">
                         <i class="fa fa-user"></i>
                         <span class="title-fitur">Berlangganan</span>
+                    </a>
+                </div>
+                <div class="col-md-2">
+                    <a data-toggle="modal" href="#ygdipesan" class="f-fitur">
+                        <i class="fa fa-calendar-check-o"></i>
+                        <span class="title-fitur">Lapang yang Dipesan</span>
                     </a>
                 </div>
             </div>
@@ -254,4 +257,56 @@ include "../../main/connection.php"
             </div>
         </div>
     </div>
+
+    <div class=" modal fade" id="ygdipesan" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="form" method="post" action="pesan_lapang_member/get_voucher.php" class="form-horizontal">
+                    <div class="modal-header color-head">
+                        <i class="fa fa-calendar-check-o"></i>
+                    </div>
+                    <div class="modal-body">
+                        <div class="head">Lapang yang dipesan</div>
+                          <div class="desc">daftar lapang yang kamu pesan</div>
+                        <table class="table table-hover" >
+                          <thead>
+                              <tr>
+                                <th>Tanggal Pesan</th>
+                                <th>Lapang</th>
+                                <th>Waktu</th>
+                              </tr>
+                            </thead>
+                          <tbody>
+                        <?php
+
+                        $tampilkan_member = mysql_query("SELECT tanggal_pesan,lapang.nama,
+                                                                DATE_FORMAT(waktu_awal, '%H:%i') as waktu_awal,
+                                                                DATE_FORMAT(waktu_akhir, '%H:%i') as waktu_akhir
+                                                         FROM pemesanan,lapang,waktu
+                                                         WHERE id_pelanggan ='$myid' and lapang.id_lapang=pemesanan.id_lapang AND
+                                                         waktu.id_waktu = pemesanan.id_waktu
+                                                         order by tanggal_pesan");
+
+                         while ($tampil_member=mysql_fetch_array($tampilkan_member)){
+
+                        echo "
+                         <tr>
+                          <td>".dateconvert($tampil_member['tanggal_pesan']); echo "</td>
+                          <td>$tampil_member[nama]</td>
+                          <td>$tampil_member[waktu_awal] - $tampil_member[waktu_akhir]</td>
+                        </tr>
+                        ";
+                        }
+                         ?>
+                       </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="button-foot" type="submit">Submit</button>
+                        <button class="button-foot" data-dismiss= "modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 </body>

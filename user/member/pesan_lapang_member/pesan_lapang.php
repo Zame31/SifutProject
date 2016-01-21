@@ -10,8 +10,7 @@
     <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../assets/css/style_user.css">
     <link rel="stylesheet" href="../../../assets/vendor/font-awesome/css/font-awesome.min.css">
-    <link href="http://fonts.googleapis.com/css?family=Roboto:300,300italic,300,100italic,100,300italic,500,500italic,700,900,900italic,700italic%7COswald:300,300,700" rel="stylesheet" type="text/css">
-    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,300,300italic,300italic,700,700italic' rel='stylesheet' type='text/css'>
+    <link href="../../../assets/fonts/myfonts.css" rel="stylesheet" type="text/css">
     <script src="../../../assets/js/jquery.min.js"></script>
     <script src="../../../assets/js/bootstrap.min.js"></script>
 </head>
@@ -22,6 +21,7 @@
     session_start();
     $id_member = $_SESSION['id_member'];
 
+      $jam                  = date('h:i:s');
     $date = $_POST["tanggal"];
     $nama_pemesan = $_POST["nama_pemesan"];
     $status_pemesan = 'member';
@@ -64,7 +64,7 @@
 
         $update_limit = mysql_query("update member set kuota_main='$count_limit' WHERE id_pelanggan='$id_pelanggan'");
 
-        $sql    = mysql_query("INSERT INTO pemesanan values ('','$date','$status_pemesan','$id_lapang','$id_waktu','$tarif','Terkonfirmasi','$id_pelanggan')");
+        $sql    = mysql_query("INSERT INTO pemesanan values ('','$date','$jam','$status_pemesan','$id_lapang','$id_waktu','$tarif','Sudah Konfirmasi','$id_pelanggan')");
         if($sql){
             $_SESSION['nama_pemesan'] = $nama_pemesan;
         }
@@ -74,7 +74,7 @@
 
             $update_limit = mysql_query("update member set kuota_main='$count_limit' WHERE id_pelanggan='$id_pelanggan'");
 
-            $sql    = mysql_query("INSERT INTO pemesanan values ('','$date','$status_pemesan','$id_lapang','$id_waktu','$tarif','Terkonfirmasi','$id_pelanggan')");
+            $sql    = mysql_query("INSERT INTO pemesanan values ('','$date','$jam','$status_pemesan','$id_lapang','$id_waktu','$tarif','Sudah Konfirmasi','$id_pelanggan')");
             if($sql){
                 $_SESSION['nama_pemesan'] = $nama_pemesan;
             }
@@ -89,7 +89,7 @@
                 <div class='modal-body body-conf'>
                     <div class='form-group'>
                         <div class='col-lg-12'>
-                            Maaf batas voucher waktu bermain anda telah habis untuk 1 bulan.
+                            Maaf batas voucher waktu bermain anda telah habis.
                             <b>Silakan melakukan pembayaran</b>
                         </div>
                     </div>
